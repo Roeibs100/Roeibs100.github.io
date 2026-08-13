@@ -3,20 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>רועי & שיראל | The Wedding Day</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Heebo:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-
-/* =====================================================
-   בסיס
-   ===================================================== */
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -24,13 +17,12 @@
 }
 
 :root {
-  --cream: #f8f4ec;
-  --cream2: #fdfbf7;
-  --gold: #ae8750;
-  --gold-soft: #c9ad7d;
-  --brown: #3f3932;
-  --gray: #8b8175;
-  --green: #6f8565;
+  --cream: #faf7ef;
+  --gold: #ad8747;
+  --green: #456848;
+  --green2: #64845f;
+  --dark: #302c27;
+  --muted: #8d8376;
 }
 
 html {
@@ -39,36 +31,32 @@ html {
 
 body {
   min-height: 100vh;
-  background: #ddd6cb;
-  color: var(--brown);
+  background: #ded7cc;
+  color: var(--dark);
+  font-family: "Heebo", sans-serif;
   overflow-x: hidden;
 }
 
-
-/* =====================================================
-   מסך הכניסה
-   ===================================================== */
+/* =========================
+   מסך כניסה
+========================= */
 
 #opening {
   position: fixed;
   inset: 0;
-  width: 100%;
-  height: 100vh;
-
   z-index: 99999;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
+  min-height: 100vh;
   overflow: hidden;
 
   background:
     radial-gradient(
-      ellipse at center,
+      circle at 50% 45%,
       #fffefa 0%,
       #faf7f0 58%,
-      #eee7dc 100%
+      #ebe3d7 100%
     );
 
   transition:
@@ -84,64 +72,42 @@ body {
   pointer-events: none;
 }
 
-
-/* =====================================================
-   מסגרת
-   ===================================================== */
-
 .opening-border {
   position: absolute;
   inset: 13px;
-
-  border: 1px solid rgba(150,132,101,.35);
-
-  pointer-events: none;
+  border: 1px solid rgba(150,132,101,.34);
 }
 
-.opening-border::after {
+.opening-border:after {
   content: "";
-
   position: absolute;
   inset: 7px;
-
-  border: 1px solid rgba(150,132,101,.12);
+  border: 1px solid rgba(150,132,101,.11);
 }
-
-
-/* =====================================================
-   קישוטים
-   ===================================================== */
 
 .opening-decoration {
   position: absolute;
-
-  width: 320px;
-  height: 320px;
-
-  border: 1px solid rgba(178,138,75,.12);
-
+  width: 330px;
+  height: 330px;
+  border: 1px solid rgba(178,138,75,.11);
   border-radius: 50%;
 }
 
 .opening-decoration.top {
-  top: -210px;
-  right: -150px;
+  top: -220px;
+  right: -160px;
 }
 
 .opening-decoration.bottom {
-  bottom: -210px;
-  left: -150px;
+  bottom: -220px;
+  left: -160px;
 }
 
 .leaf-decoration {
   position: absolute;
-
   font-family: "Cormorant Garamond", serif;
-
   font-size: 210px;
-
-  color: rgba(126,136,113,.08);
-
+  color: rgba(126,136,113,.07);
   pointer-events: none;
 }
 
@@ -157,24 +123,16 @@ body {
   transform: rotate(145deg);
 }
 
-
-/* =====================================================
-   תוכן כניסה
-   ===================================================== */
-
 .opening-content {
   position: relative;
-  z-index: 10;
-
+  z-index: 2;
   width: 100%;
   max-width: 500px;
-  height: 100vh;
-
+  min-height: 100vh;
   padding: 30px;
 
   display: flex;
   flex-direction: column;
-
   align-items: center;
   justify-content: center;
 
@@ -183,59 +141,42 @@ body {
 
 .opening-title {
   font-family: "Cormorant Garamond", serif;
-
   font-size: 17px;
   letter-spacing: 6px;
-
   color: #756b60;
-
-  margin-bottom: 24px;
+  margin-bottom: 23px;
 }
 
 .opening-names {
   font-family: "Cormorant Garamond", serif;
-
-  font-size: 51px;
-
+  font-size: 52px;
   font-weight: 400;
-
-  color: #36312b;
-
   line-height: 1;
-
-  margin-bottom: 15px;
+  color: #36312b;
+  margin-bottom: 14px;
 }
 
 .opening-names span {
   color: var(--gold);
-
-  font-size: 45px;
-
+  font-size: 44px;
   font-style: italic;
-
   margin: 0 8px;
 }
 
 .opening-subtitle {
   font-family: "Cormorant Garamond", serif;
-
   font-size: 17px;
-
   letter-spacing: 5px;
-
   color: #92877a;
-
   margin-bottom: 38px;
 }
 
-
-/* =====================================================
-   SAVE THE DATE
-   ===================================================== */
+/* =========================
+   חותמת SAVE THE DATE
+========================= */
 
 .wax-seal {
   position: relative;
-
   width: 190px;
   height: 190px;
 
@@ -262,16 +203,12 @@ body {
     inset 0 2px 8px rgba(255,255,255,.95),
     inset 0 -8px 15px rgba(120,104,80,.13);
 
-  transition:
-    transform .35s ease,
-    box-shadow .35s ease;
+  transition: .35s;
 }
 
-.wax-seal::before {
+.wax-seal:before {
   content: "";
-
   position: absolute;
-
   inset: -8px;
 
   border-radius:
@@ -279,120 +216,81 @@ body {
     52% 46% 54% 48%;
 
   border: 7px solid rgba(226,219,207,.8);
-
   transform: rotate(-5deg);
 }
 
-.wax-seal::after {
+.wax-seal:after {
   content: "";
-
   position: absolute;
-
   inset: 5px;
-
   border-radius: 50%;
-
   border: 1px solid rgba(140,124,102,.25);
 }
 
 .wax-seal:hover {
   transform: scale(1.06) rotate(-1deg);
-
-  box-shadow:
-    0 22px 48px rgba(91,77,58,.22),
-    inset 0 2px 8px rgba(255,255,255,.95),
-    inset 0 -8px 15px rgba(120,104,80,.13);
 }
 
 .seal-inner {
   position: absolute;
-
   inset: 18px;
 
   border-radius: 50%;
-
   border: 1px solid rgba(132,117,97,.28);
 
   display: flex;
   flex-direction: column;
-
   align-items: center;
   justify-content: center;
 
   color: #817565;
+
+  text-shadow:
+    0 1px 1px rgba(255,255,255,.95);
 }
 
-.seal-save {
+.seal-save,
+.seal-date {
   font-family: "Cormorant Garamond", serif;
-
   font-size: 27px;
-
   font-weight: 500;
-
   letter-spacing: 4px;
+  line-height: 1;
 }
 
 .seal-the {
   font-family: "Cormorant Garamond", serif;
-
   font-size: 18px;
-
   font-style: italic;
-
   color: #958a7b;
-
   margin: 5px 0;
-}
-
-.seal-date {
-  font-family: "Cormorant Garamond", serif;
-
-  font-size: 27px;
-
-  font-weight: 500;
-
-  letter-spacing: 4px;
 }
 
 .seal-line {
   width: 45px;
   height: 1px;
-
   background: rgba(132,117,97,.35);
-
   margin-top: 9px;
 }
 
 .opening-wedding {
   font-family: "Cormorant Garamond", serif;
-
   font-size: 18px;
-
   font-style: italic;
-
   letter-spacing: 4px;
-
   color: #817568;
-
   margin-top: 35px;
 }
 
 .opening-hint {
-  font-family: "Heebo", sans-serif;
-
   font-size: 13px;
-
   font-weight: 300;
-
   color: #9a9083;
-
-  margin-top: 32px;
-
+  margin-top: 30px;
   animation: pulse 2.5s infinite;
 }
 
 @keyframes pulse {
-
   0%,100% {
     opacity: .45;
   }
@@ -400,13 +298,11 @@ body {
   50% {
     opacity: 1;
   }
-
 }
 
-
-/* =====================================================
+/* =========================
    ההזמנה
-   ===================================================== */
+========================= */
 
 #invitation {
   display: none;
@@ -414,22 +310,17 @@ body {
 
 .page {
   position: relative;
-
   width: 100%;
-
   max-width: 560px;
-
   min-height: 100vh;
-
   margin: auto;
-
   overflow: hidden;
 
   background:
     radial-gradient(
       ellipse at center,
-      rgba(255,255,255,.90),
-      rgba(247,242,233,.97) 58%,
+      rgba(255,255,255,.94),
+      rgba(247,242,233,.98) 58%,
       rgba(235,225,210,1)
     );
 
@@ -439,150 +330,94 @@ body {
 
 .frame {
   position: absolute;
-
   inset: 14px;
-
   border: 1px solid rgba(178,138,75,.38);
-
   pointer-events: none;
-
-  z-index: 2;
 }
 
-.frame::after {
+.frame:after {
   content: "";
-
   position: absolute;
-
   inset: 7px;
-
   border: 1px solid rgba(178,138,75,.13);
 }
 
-
-/* =====================================================
-   תוכן
-   ===================================================== */
-
 .content {
   position: relative;
-
-  z-index: 5;
+  z-index: 2;
 
   min-height: 100vh;
 
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
 
-  padding: 60px 24px 55px;
+  padding: 58px 20px 48px;
 
   text-align: center;
 }
 
-
-/* =====================================================
-   כותרת
-   ===================================================== */
-
 .monogram {
   display: flex;
-
   align-items: center;
-
   gap: 14px;
 
   font-family: "Cormorant Garamond", serif;
-
   font-size: 39px;
-
   color: var(--gold);
-
   letter-spacing: 5px;
 
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 
 .monogram-line {
   width: 1px;
-
-  height: 40px;
-
+  height: 39px;
   background: var(--gold);
 }
 
 .heart {
+  font-size: 13px;
   color: var(--gold);
-
-  font-size: 14px;
-
-  margin-bottom: 22px;
+  margin-bottom: 21px;
 }
 
 .wedding-title {
   font-family: "Cormorant Garamond", serif;
-
   font-size: 16px;
-
   letter-spacing: 6px;
-
   color: #776d61;
-
-  margin-bottom: 13px;
+  margin-bottom: 12px;
 }
 
 .names {
   font-family: "Heebo", sans-serif;
-
-  font-size: clamp(46px,13vw,67px);
-
+  font-size: clamp(45px,13vw,67px);
   font-weight: 300;
-
   line-height: 1.05;
-
-  color: #282521;
-
   white-space: nowrap;
-
   margin-bottom: 17px;
 }
 
 .names .and {
   font-family: "Cormorant Garamond", serif;
-
   color: var(--gold);
-
   font-size: 53px;
-
   font-style: italic;
-
   margin: 0 7px;
 }
 
-
-/* =====================================================
-   ADIA
-   ===================================================== */
-
 .ornament {
   display: flex;
-
   align-items: center;
-
   width: 100%;
-
   max-width: 390px;
-
   margin: 4px auto 25px;
 }
 
 .ornament-line {
   flex: 1;
-
   height: 1px;
-
   background:
     linear-gradient(
       to right,
@@ -602,96 +437,68 @@ body {
 
 .ornament-center {
   color: var(--gold);
-
   margin: 0 12px;
-
   transform: rotate(45deg);
-
   font-size: 13px;
 }
 
 .venue-small {
-  font-family: "Heebo", sans-serif;
-
   font-size: 16px;
-
   font-weight: 300;
-
   color: #756c61;
 }
 
 .venue {
   font-family: "Cormorant Garamond", serif;
-
   font-size: 66px;
-
   line-height: .95;
-
   letter-spacing: 8px;
-
-  color: #302c27;
-
   margin: 2px 0 5px;
 }
 
 .venue-sub {
   font-family: "Cormorant Garamond", serif;
-
   font-size: 17px;
-
   letter-spacing: 5px;
-
   color: var(--gold);
-
   margin-bottom: 30px;
 }
 
-
-/* =====================================================
-   אזור הכרטיסים
-   ===================================================== */
+/* =========================
+   כפתורים
+========================= */
 
 .buttons {
   width: 100%;
-
   max-width: 430px;
 
   display: flex;
-
   flex-direction: column;
-
   gap: 11px;
 }
-
-
-/* =====================================================
-   כרטיס בסיס
-   ===================================================== */
 
 .button {
   position: relative;
 
   width: 100%;
-
   min-height: 76px;
 
   display: flex;
-
   align-items: center;
 
   text-decoration: none;
 
-  color: var(--brown);
+  color: var(--dark);
 
-  background:
-    rgba(255,255,255,.48);
+  background: rgba(255,255,255,.52);
 
   border:
-    1px solid rgba(143,124,95,.28);
+    1px solid
+    rgba(143,124,95,.28);
 
-  border-radius: 12px;
+  border-radius: 14px;
 
-  padding: 9px 16px;
+  padding: 9px 14px;
 
   font-family: "Heebo", sans-serif;
 
@@ -699,66 +506,48 @@ body {
 
   overflow: hidden;
 
-  transition:
-    transform .25s ease,
-    background .25s ease,
-    box-shadow .25s ease,
-    border-color .25s ease;
+  transition: .25s;
 }
 
 .button:hover {
   transform: translateY(-2px);
 
-  background:
-    rgba(255,255,255,.80);
+  background: rgba(255,255,255,.86);
 
-  border-color:
-    rgba(174,135,80,.55);
+  border-color: rgba(174,135,80,.55);
 
   box-shadow:
-    0 8px 24px rgba(80,65,47,.08);
+    0 8px 24px
+    rgba(80,65,47,.08);
 }
 
 .button:active {
   transform: scale(.985);
 }
 
-
-/* =====================================================
-   אזור האייקון
-   ===================================================== */
-
 .action-icon {
   width: 48px;
-
   height: 48px;
 
   flex-shrink: 0;
 
-  margin-left: 15px;
+  margin-left: 14px;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   color: var(--gold);
 
   border-left:
-    1px solid rgba(174,135,80,.22);
+    1px solid
+    rgba(174,135,80,.22);
 }
-
-
-/* =====================================================
-   טקסט
-   ===================================================== */
 
 .action-text {
   flex: 1;
 
   display: flex;
-
   flex-direction: column;
 
   align-items: flex-start;
@@ -768,36 +557,25 @@ body {
 
 .action-title {
   font-size: 17px;
-
   font-weight: 400;
-
   color: #3c3731;
 }
 
 .action-subtitle {
   font-size: 12px;
-
   font-weight: 300;
-
   color: #94897c;
-
   margin-top: 1px;
 }
 
 .action-arrow {
   font-family: Arial,sans-serif;
-
   font-size: 24px;
-
   color: #aa9576;
-
-  margin-right: 9px;
+  margin-right: 8px;
 }
 
-
-/* =====================================================
-   אישור הגעה
-   ===================================================== */
+/* RSVP */
 
 .rsvp-card {
   background:
@@ -811,18 +589,17 @@ body {
     rgba(174,135,80,.65);
 
   box-shadow:
-    0 8px 22px rgba(49,43,36,.14);
+    0 8px 22px
+    rgba(49,43,36,.14);
 }
 
 .rsvp-card .action-icon {
   color: #d5b77e;
-
-  border-left-color:
-    rgba(213,183,126,.28);
+  border-left-color: rgba(213,183,126,.28);
 }
 
 .rsvp-card .action-title {
-  color: #fff;
+  color: white;
 }
 
 .rsvp-card .action-subtitle {
@@ -833,44 +610,21 @@ body {
   color: #d5b77e;
 }
 
-
-/* לב קווי */
-
 .heart-outline {
-  position: relative;
-
-  width: 22px;
-  height: 20px;
-}
-
-.heart-outline::before {
-  content: "♡";
-
-  position: absolute;
-
-  font-family: Arial,sans-serif;
-
   font-size: 31px;
-
-  line-height: 20px;
-
-  top: -1px;
-  left: -3px;
+  font-family: Arial,sans-serif;
 }
 
-
-/* =====================================================
-   מיקום
-   ===================================================== */
+/* location */
 
 .location-icon {
   position: relative;
-
   width: 20px;
   height: 26px;
 
   border:
-    1.5px solid currentColor;
+    1.5px solid
+    currentColor;
 
   border-radius:
     50% 50% 50% 0;
@@ -878,7 +632,7 @@ body {
   transform: rotate(-45deg);
 }
 
-.location-icon::after {
+.location-icon:after {
   content: "";
 
   position: absolute;
@@ -886,7 +640,9 @@ body {
   width: 5px;
   height: 5px;
 
-  border: 1px solid currentColor;
+  border:
+    1px solid
+    currentColor;
 
   border-radius: 50%;
 
@@ -894,10 +650,7 @@ body {
   left: 6px;
 }
 
-
-/* =====================================================
-   יומן
-   ===================================================== */
+/* calendar */
 
 .calendar-icon {
   position: relative;
@@ -906,26 +659,27 @@ body {
   height: 25px;
 
   border:
-    1.5px solid currentColor;
+    1.5px solid
+    currentColor;
 
   border-radius: 4px;
 }
 
-.calendar-icon::before {
+.calendar-icon:before {
   content: "";
 
   position: absolute;
 
   left: 0;
   right: 0;
-
   top: 7px;
 
   border-top:
-    1.5px solid currentColor;
+    1.5px solid
+    currentColor;
 }
 
-.calendar-icon::after {
+.calendar-icon:after {
   content: "";
 
   position: absolute;
@@ -946,55 +700,45 @@ body {
     8px 7px currentColor;
 }
 
-
-/* =====================================================
-   BIT
-   ===================================================== */
+/* Bit */
 
 .bit-card {
   border-color:
-    rgba(111,133,101,.32);
+    rgba(111,133,101,.38);
 
   background:
     linear-gradient(
       135deg,
-      rgba(250,253,247,.85),
-      rgba(242,247,237,.72)
+      rgba(250,253,247,.9),
+      rgba(242,247,237,.75)
     );
 }
 
 .bit-card .action-icon {
-  color: var(--green);
-
+  color: var(--green2);
   border-left-color:
     rgba(111,133,101,.25);
 }
 
 .bit-logo {
   font-family: Arial,sans-serif;
-
-  font-size: 19px;
-
+  font-size: 21px;
   font-weight: 700;
-
   letter-spacing: -1.5px;
-
   color: #638158;
 }
 
-
-/* =====================================================
-   אשראי
-   ===================================================== */
+/* אשראי */
 
 .credit-icon {
   position: relative;
 
-  width: 32px;
-  height: 21px;
+  width: 33px;
+  height: 22px;
 
   border:
-    1px solid #71685d;
+    1px solid
+    #71685d;
 
   border-radius: 4px;
 
@@ -1004,12 +748,9 @@ body {
       #777066,
       #3f3a34
     );
-
-  box-shadow:
-    0 3px 7px rgba(50,45,40,.14);
 }
 
-.credit-icon::before {
+.credit-icon:before {
   content: "";
 
   position: absolute;
@@ -1020,11 +761,10 @@ body {
   width: 100%;
   height: 3px;
 
-  background:
-    #c5ad84;
+  background: #c5ad84;
 }
 
-.credit-icon::after {
+.credit-icon:after {
   content: "••••";
 
   position: absolute;
@@ -1035,24 +775,17 @@ body {
   color: #eee6d9;
 
   font-size: 6px;
-
   letter-spacing: 1px;
 }
 
-
-/* =====================================================
-   FOOTER
-   ===================================================== */
+/* Footer */
 
 .footer {
   width: 100%;
-
   margin-top: 40px;
 
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
 }
 
@@ -1060,7 +793,6 @@ body {
   width: 170px;
 
   display: flex;
-
   align-items: center;
 
   margin-bottom: 15px;
@@ -1068,74 +800,60 @@ body {
 
 .footer-line {
   flex: 1;
-
   height: 1px;
-
-  background:
-    rgba(178,138,75,.4);
+  background: rgba(178,138,75,.4);
 }
 
 .footer-heart {
   color: var(--gold);
-
   margin: 0 9px;
-
   font-size: 12px;
 }
 
 .with-love {
-  font-family: "Cormorant Garamond",serif;
-
+  font-family: "Cormorant Garamond", serif;
   font-size: 25px;
-
   font-style: italic;
-
   color: var(--gold);
-
   margin-bottom: 3px;
 }
 
 .footer-names {
-  font-family: "Cormorant Garamond",serif;
-
+  font-family: "Cormorant Garamond", serif;
   font-size: 16px;
-
   letter-spacing: 5px;
 }
 
-
-/* =====================================================
-   RSVP
-   ===================================================== */
+/* =========================
+   חלונות
+========================= */
 
 .modal {
   display: none;
 
   position: fixed;
-
   inset: 0;
 
   z-index: 100000;
 
   background:
-    rgba(35,31,27,.62);
+    rgba(35,31,27,.64);
 
   align-items: center;
   justify-content: center;
 
-  padding: 20px;
+  padding: 18px;
 
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(7px);
 }
 
 .modal-content {
   position: relative;
 
   width: 100%;
-
   max-width: 410px;
 
-  padding: 40px 26px 30px;
+  padding: 38px 24px 28px;
 
   text-align: center;
 
@@ -1147,47 +865,43 @@ body {
     );
 
   border:
-    1px solid var(--gold);
+    1px solid
+    var(--gold);
 
-  border-radius: 14px;
+  border-radius: 18px;
 
   box-shadow:
-    0 20px 60px rgba(0,0,0,.24);
-}
-
-.modal-content h2 {
-  font-family: "Cormorant Garamond",serif;
-
-  font-size: 35px;
-
-  font-weight: 400;
-
-  margin-bottom: 5px;
-}
-
-.modal-content p {
-  font-family: "Heebo",sans-serif;
-
-  font-size: 15px;
-
-  font-weight: 300;
-
-  color: #756d63;
-
-  margin-bottom: 23px;
+    0 20px 60px
+    rgba(0,0,0,.25);
 }
 
 .close {
   position: absolute;
 
   left: 17px;
-  top: 9px;
+  top: 8px;
 
   font-size: 27px;
 
   color: #81786d;
 
   cursor: pointer;
+}
+
+/* RSVP */
+
+.modal-content h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 35px;
+  font-weight: 400;
+  margin-bottom: 5px;
+}
+
+.modal-content p {
+  font-size: 15px;
+  font-weight: 300;
+  color: #756d63;
+  margin-bottom: 23px;
 }
 
 .choice {
@@ -1198,12 +912,13 @@ body {
   margin: 6px 0;
 
   border:
-    1px solid rgba(142,124,94,.45);
+    1px solid
+    rgba(142,124,94,.45);
 
-  border-radius: 8px;
+  border-radius: 9px;
 
   background:
-    rgba(255,255,255,.45);
+    rgba(255,255,255,.48);
 
   color: #413b34;
 
@@ -1218,21 +933,258 @@ body {
 
 .choice:hover {
   background: #eee6d9;
-
-  transform: translateY(-1px);
 }
 
+/* =========================
+   BIT MODAL
+========================= */
 
-/* =====================================================
+.bit-modal {
+  max-width: 405px;
+  padding: 34px 22px 26px;
+}
+
+.bit-modal-logo {
+  font-family: Arial,sans-serif;
+
+  font-size: 45px;
+
+  line-height: 1;
+
+  font-weight: 700;
+
+  letter-spacing: -4px;
+
+  color: #55a85f;
+
+  margin-bottom: 16px;
+}
+
+.bit-title {
+  font-family: "Heebo",sans-serif;
+
+  font-size: 27px;
+
+  font-weight: 400;
+
+  color: #23452c;
+
+  margin-bottom: 6px;
+}
+
+.bit-thanks {
+  font-size: 15px;
+
+  color: #6e786b;
+
+  font-weight: 300;
+
+  margin-bottom: 22px;
+}
+
+.bit-divider {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  margin: 14px 0 18px;
+}
+
+.bit-divider span {
+  flex: 1;
+  height: 1px;
+  background: rgba(173,135,71,.35);
+}
+
+.bit-divider b {
+  color: var(--gold);
+  font-size: 12px;
+}
+
+.bit-number-label {
+  font-size: 13px;
+  color: #8b8175;
+  margin-bottom: 4px;
+}
+
+.bit-number {
+  direction: ltr;
+
+  font-size: 29px;
+
+  letter-spacing: 1px;
+
+  font-weight: 400;
+
+  color: #23452c;
+
+  margin-bottom: 13px;
+}
+
+.copy-bit {
+  width: 100%;
+
+  padding: 13px;
+
+  border:
+    1px solid
+    rgba(173,135,71,.65);
+
+  border-radius: 10px;
+
+  background: #fffdf8;
+
+  color: #4f6548;
+
+  font-family: "Heebo",sans-serif;
+
+  font-size: 15px;
+
+  cursor: pointer;
+}
+
+.copy-bit:hover {
+  background: #f3eee3;
+}
+
+.bit-gift {
+  margin: 19px 0 11px;
+
+  font-size: 15px;
+
+  color: #2d4631;
+}
+
+.gift-icon {
+  font-size: 26px;
+  color: var(--gold);
+  margin: 5px 0 8px;
+}
+
+.bit-note {
+  font-size: 13px;
+
+  line-height: 1.7;
+
+  color: #7f776d;
+}
+
+.bit-note strong {
+  display: inline-block;
+
+  margin-top: 4px;
+
+  padding: 2px 8px;
+
+  border-radius: 5px;
+
+  background: #f0efe7;
+
+  color: #38503b;
+
+  font-weight: 500;
+}
+
+.open-bit {
+  display: block;
+
+  width: 100%;
+
+  margin-top: 18px;
+
+  padding: 14px;
+
+  border: 0;
+
+  border-radius: 10px;
+
+  background: #244b2d;
+
+  color: white;
+
+  text-decoration: none;
+
+  font-size: 16px;
+
+  font-family: "Heebo",sans-serif;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 7px 18px
+    rgba(36,75,45,.18);
+}
+
+.open-bit:hover {
+  background: #1d3e25;
+}
+
+.bit-small {
+  margin-top: 12px;
+
+  font-size: 11px;
+
+  color: #9a9186;
+}
+
+/* =========================
+   אשראי
+========================= */
+
+.credit-box {
+  padding-top: 6px;
+}
+
+.credit-big-icon {
+  width: 58px;
+  height: 39px;
+
+  margin: 0 auto 14px;
+
+  border-radius: 7px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #7b746b,
+      #35312c
+    );
+
+  position: relative;
+}
+
+.credit-big-icon:before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  top: 9px;
+
+  height: 5px;
+
+  background: #c7aa75;
+}
+
+.credit-box h2 {
+  margin-bottom: 8px;
+}
+
+.credit-box p {
+  margin-bottom: 16px;
+}
+
+/* =========================
    מובייל
-   ===================================================== */
+========================= */
 
-@media (max-width:450px) {
+@media(max-width:450px) {
 
   .opening-title {
     font-size: 14px;
     letter-spacing: 4px;
-    margin-bottom: 20px;
   }
 
   .opening-names {
@@ -1257,19 +1209,12 @@ body {
     font-size: 16px;
   }
 
-  .opening-hint {
-    margin-top: 27px;
-  }
-
   .content {
-    padding:
-      52px
-      18px
-      45px;
+    padding: 50px 17px 43px;
   }
 
   .names {
-    font-size: 47px;
+    font-size: 46px;
   }
 
   .names .and {
@@ -1277,22 +1222,17 @@ body {
   }
 
   .venue {
-    font-size: 56px;
+    font-size: 55px;
   }
 
   .button {
     min-height: 72px;
-
-    padding:
-      8px
-      12px;
   }
 
   .action-icon {
     width: 43px;
     height: 43px;
-
-    margin-left: 12px;
+    margin-left: 11px;
   }
 
   .action-title {
@@ -1303,31 +1243,28 @@ body {
     font-size: 11px;
   }
 
-  .action-arrow {
-    font-size: 22px;
-
-    margin-right: 6px;
+  .bit-title {
+    font-size: 24px;
   }
 
+  .bit-number {
+    font-size: 26px;
+  }
 }
-
 </style>
 </head>
 
-
 <body>
 
-
-<!-- =====================================================
+<!-- =========================
      מסך כניסה
-     ===================================================== -->
+========================= -->
 
 <div id="opening">
 
   <div class="opening-border"></div>
 
   <div class="opening-decoration top"></div>
-
   <div class="opening-decoration bottom"></div>
 
   <div class="leaf-decoration left">
@@ -1338,31 +1275,19 @@ body {
     ❧
   </div>
 
-
   <div class="opening-content">
 
     <div class="opening-title">
       THE WEDDING OF
     </div>
 
-
     <div class="opening-names">
-
-      רועי
-
-      <span>
-        &amp;
-      </span>
-
-      שיראל
-
+      רועי <span>&amp;</span> שיראל
     </div>
-
 
     <div class="opening-subtitle">
       OUR SPECIAL DAY
     </div>
-
 
     <div
       class="wax-seal"
@@ -1389,25 +1314,21 @@ body {
 
     </div>
 
-
     <div class="opening-wedding">
       the wedding
     </div>
-
 
     <div class="opening-hint">
       לחצו על החותמת לפתיחת ההזמנה
     </div>
 
   </div>
-
 </div>
 
 
-
-<!-- =====================================================
+<!-- =========================
      ההזמנה
-     ===================================================== -->
+========================= -->
 
 <div id="invitation">
 
@@ -1415,9 +1336,7 @@ body {
 
     <div class="frame"></div>
 
-
     <main class="content">
-
 
       <div class="monogram">
 
@@ -1429,29 +1348,19 @@ body {
 
       </div>
 
-
       <div class="heart">
         ♥
       </div>
-
 
       <div class="wedding-title">
         THE WEDDING OF
       </div>
 
-
       <div class="names">
-
         רועי
-
-        <span class="and">
-          &amp;
-        </span>
-
+        <span class="and">&amp;</span>
         שיראל
-
       </div>
-
 
       <div class="ornament">
 
@@ -1465,26 +1374,20 @@ body {
 
       </div>
 
-
       <div class="venue-small">
         מתחם האירועים
       </div>
 
-
       <div class="venue">
         ADIA
       </div>
-
 
       <div class="venue-sub">
         ADIA EVENTS
       </div>
 
 
-
-      <!-- =================================================
-           כרטיסים
-           ================================================= -->
+      <!-- כפתורים -->
 
       <div class="buttons">
 
@@ -1498,10 +1401,11 @@ body {
 
           <div class="action-icon">
 
-            <div class="heart-outline"></div>
+            <div class="heart-outline">
+              ♡
+            </div>
 
           </div>
-
 
           <div class="action-text">
 
@@ -1515,13 +1419,11 @@ body {
 
           </div>
 
-
           <div class="action-arrow">
             ‹
           </div>
 
         </button>
-
 
 
         <!-- מיקום -->
@@ -1530,6 +1432,7 @@ body {
           class="button"
           href="https://www.waze.com/"
           target="_blank"
+          rel="noopener"
         >
 
           <div class="action-icon">
@@ -1537,7 +1440,6 @@ body {
             <div class="location-icon"></div>
 
           </div>
-
 
           <div class="action-text">
 
@@ -1551,13 +1453,11 @@ body {
 
           </div>
 
-
           <div class="action-arrow">
             ‹
           </div>
 
         </a>
-
 
 
         <!-- יומן -->
@@ -1574,7 +1474,6 @@ body {
 
           </div>
 
-
           <div class="action-text">
 
             <div class="action-title">
@@ -1587,7 +1486,6 @@ body {
 
           </div>
 
-
           <div class="action-arrow">
             ‹
           </div>
@@ -1595,8 +1493,7 @@ body {
         </a>
 
 
-
-        <!-- Bit -->
+        <!-- BIT -->
 
         <a
           class="button bit-card"
@@ -1612,7 +1509,6 @@ body {
 
           </div>
 
-
           <div class="action-text">
 
             <div class="action-title">
@@ -1620,18 +1516,16 @@ body {
             </div>
 
             <div class="action-subtitle">
-              נשמח למתנה באהבה
+              מתנה באהבה, בסכום שתבחרו
             </div>
 
           </div>
-
 
           <div class="action-arrow">
             ‹
           </div>
 
         </a>
-
 
 
         <!-- אשראי -->
@@ -1648,7 +1542,6 @@ body {
 
           </div>
 
-
           <div class="action-text">
 
             <div class="action-title">
@@ -1661,16 +1554,13 @@ body {
 
           </div>
 
-
           <div class="action-arrow">
             ‹
           </div>
 
         </a>
 
-
       </div>
-
 
 
       <!-- Footer -->
@@ -1689,18 +1579,15 @@ body {
 
         </div>
 
-
         <div class="with-love">
           with love
         </div>
-
 
         <div class="footer-names">
           ROEI & SHIREL
         </div>
 
       </div>
-
 
     </main>
 
@@ -1709,10 +1596,9 @@ body {
 </div>
 
 
-
-<!-- =====================================================
-     RSVP
-     ===================================================== -->
+<!-- =========================
+     אישור הגעה
+========================= -->
 
 <div
   class="modal"
@@ -1728,16 +1614,13 @@ body {
       ×
     </span>
 
-
     <h2>
       אישור הגעה
     </h2>
 
-
     <p>
-      נשמח לדעת אם תוכלו לחגוג איתנו ❤️
+      נשמח לדעת אם תוכלו לחגוג איתנו
     </p>
-
 
     <button
       class="choice"
@@ -1745,7 +1628,6 @@ body {
     >
       כן, אני מגיע/ה
     </button>
-
 
     <button
       class="choice"
@@ -1759,13 +1641,153 @@ body {
 </div>
 
 
+<!-- =========================
+     BIT
+========================= -->
+
+<div
+  class="modal"
+  id="bitModal"
+>
+
+  <div class="modal-content bit-modal">
+
+    <span
+      class="close"
+      onclick="closeBit()"
+    >
+      ×
+    </span>
+
+    <div class="bit-modal-logo">
+      bit
+    </div>
+
+    <div class="bit-title">
+      מתנה לרועי &amp; שיראל
+    </div>
+
+    <div class="bit-thanks">
+      תודה שאתם חלק מהיום המיוחד שלנו ♥
+    </div>
+
+    <div class="bit-divider">
+
+      <span></span>
+
+      <b>♥</b>
+
+      <span></span>
+
+    </div>
+
+    <div class="bit-number-label">
+      מספר ה-Bit להעברה
+    </div>
+
+    <div class="bit-number">
+      058-400-0184
+    </div>
+
+    <button
+      class="copy-bit"
+      id="copyBitButton"
+      onclick="copyBitNumber()"
+    >
+      העתקת מספר
+    </button>
+
+    <div class="bit-divider">
+
+      <span></span>
+
+      <b>♥</b>
+
+      <span></span>
+
+    </div>
+
+    <div class="bit-gift">
+      בחרו בעצמכם את הסכום שתרצו להעניק
+    </div>
+
+    <div class="gift-icon">
+      ♢
+    </div>
+
+    <div class="bit-note">
+
+      בסיבת ההעברה אפשר לכתוב:
+
+      <br>
+
+      <strong>
+        מתנה לחתונה רועי ושיראל
+      </strong>
+
+    </div>
+
+    <button
+      class="open-bit"
+      onclick="tryOpenBit()"
+    >
+      פתיחת Bit
+    </button>
+
+    <div class="bit-small">
+      אם Bit לא נפתחת, המספר יישאר מוצג כדי שתוכלו להעתיק אותו.
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     אשראי
+========================= -->
+
+<div
+  class="modal"
+  id="creditModal"
+>
+
+  <div class="modal-content credit-box">
+
+    <span
+      class="close"
+      onclick="closeCredit()"
+    >
+      ×
+    </span>
+
+    <div class="credit-big-icon"></div>
+
+    <h2>
+      מתנה באשראי
+    </h2>
+
+    <p>
+      עמוד התשלום באשראי יחובר כאן בהמשך.
+    </p>
+
+    <button
+      class="choice"
+      onclick="closeCredit()"
+    >
+      חזרה להזמנה
+    </button>
+
+  </div>
+
+</div>
+
 
 <script>
 
-
-/* =====================================================
+/* =========================
    פתיחת ההזמנה
-   ===================================================== */
+========================= */
 
 function openInvitation() {
 
@@ -1775,9 +1797,7 @@ function openInvitation() {
   const invitation =
     document.getElementById("invitation");
 
-
   opening.classList.add("opened");
-
 
   setTimeout(function() {
 
@@ -1785,18 +1805,18 @@ function openInvitation() {
 
     invitation.style.display = "block";
 
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
 
     document.body.style.overflow = "auto";
 
-  },1100);
+  }, 1100);
 
 }
 
 
-/* =====================================================
+/* =========================
    אישור הגעה
-   ===================================================== */
+========================= */
 
 function openRSVP() {
 
@@ -1806,7 +1826,6 @@ function openRSVP() {
 
 }
 
-
 function closeRSVP() {
 
   document.getElementById(
@@ -1815,15 +1834,13 @@ function closeRSVP() {
 
 }
 
-
 function rsvpYes() {
 
   alert(
-    "מעולה ❤️\n\nבשלב הבא נחבר כאן את טופס אישור ההגעה."
+    "מעולה! נשמח לראות אתכם בחתונה ❤️"
   );
 
 }
-
 
 function rsvpNo() {
 
@@ -1834,60 +1851,234 @@ function rsvpNo() {
 }
 
 
-/* =====================================================
+/* =========================
    BIT
-   ===================================================== */
+========================= */
 
 function openBit(event) {
 
   event.preventDefault();
 
-  alert(
-    "כאן נחבר את קישור ה-Bit שלכם."
-  );
+  document.getElementById(
+    "bitModal"
+  ).style.display = "flex";
+
+}
+
+function closeBit() {
+
+  document.getElementById(
+    "bitModal"
+  ).style.display = "none";
 
 }
 
 
-/* =====================================================
+/* העתקת מספר */
+
+function copyBitNumber() {
+
+  const number =
+    "0584000184";
+
+  if (
+    navigator.clipboard &&
+    window.isSecureContext
+  ) {
+
+    navigator.clipboard
+      .writeText(number)
+      .then(function() {
+
+        const button =
+          document.getElementById(
+            "copyBitButton"
+          );
+
+        button.innerText =
+          "✓ המספר הועתק";
+
+        setTimeout(function() {
+
+          button.innerText =
+            "העתקת מספר";
+
+        }, 2000);
+
+      })
+      .catch(function() {
+
+        fallbackCopy(number);
+
+      });
+
+  } else {
+
+    fallbackCopy(number);
+
+  }
+
+}
+
+
+/* גיבוי להעתקה */
+
+function fallbackCopy(text) {
+
+  const area =
+    document.createElement("textarea");
+
+  area.value = text;
+
+  area.style.position = "fixed";
+
+  area.style.opacity = "0";
+
+  document.body.appendChild(area);
+
+  area.focus();
+
+  area.select();
+
+  try {
+
+    document.execCommand("copy");
+
+    document.getElementById(
+      "copyBitButton"
+    ).innerText =
+      "✓ המספר הועתק";
+
+    setTimeout(function() {
+
+      document.getElementById(
+        "copyBitButton"
+      ).innerText =
+        "העתקת מספר";
+
+    }, 2000);
+
+  } catch(e) {
+
+    alert(
+      "מספר ה-Bit: 058-400-0184"
+    );
+
+  }
+
+  document.body.removeChild(area);
+
+}
+
+
+/* =========================
+   פתיחת Bit
+========================= */
+
+function tryOpenBit() {
+
+  const isMobile =
+    /Android|iPhone|iPad|iPod/i
+    .test(navigator.userAgent);
+
+  if (!isMobile) {
+
+    alert(
+      "פתחו את Bit בטלפון והעבירו ל-058-400-0184"
+    );
+
+    return;
+
+  }
+
+  let hidden = false;
+
+  const onVisibility =
+    function() {
+
+      if (document.hidden) {
+
+        hidden = true;
+
+        document.removeEventListener(
+          "visibilitychange",
+          onVisibility
+        );
+
+      }
+
+    };
+
+  document.addEventListener(
+    "visibilitychange",
+    onVisibility
+  );
+
+  window.location.href =
+    "bit://";
+
+  setTimeout(function() {
+
+    document.removeEventListener(
+      "visibilitychange",
+      onVisibility
+    );
+
+    if (!hidden) {
+
+      document.getElementById(
+        "bitModal"
+      ).style.display = "flex";
+
+    }
+
+  }, 1500);
+
+}
+
+
+/* =========================
    אשראי
-   ===================================================== */
+========================= */
 
 function openCredit(event) {
 
   event.preventDefault();
 
-  alert(
-    "כאן נחבר את עמוד התשלום באשראי."
-  );
+  document.getElementById(
+    "creditModal"
+  ).style.display = "flex";
+
+}
+
+function closeCredit() {
+
+  document.getElementById(
+    "creditModal"
+  ).style.display = "none";
 
 }
 
 
-/* =====================================================
+/* =========================
    Google Calendar
-   ===================================================== */
+========================= */
 
 function addToCalendar(event) {
 
   event.preventDefault();
 
-
   const title =
     "החתונה של רועי ושיראל";
-
 
   const start =
     "20261227T193000";
 
-
   const end =
     "20261227T233000";
 
-
   const location =
     "מתחם האירועים ADIA";
-
 
   const url =
     "https://calendar.google.com/calendar/render" +
@@ -1901,7 +2092,6 @@ function addToCalendar(event) {
     "&location=" +
     encodeURIComponent(location);
 
-
   window.open(
     url,
     "_blank"
@@ -1910,24 +2100,39 @@ function addToCalendar(event) {
 }
 
 
-/* =====================================================
-   סגירת חלון
-   ===================================================== */
+/* =========================
+   סגירת חלונות בלחיצה בחוץ
+========================= */
 
 window.addEventListener(
   "click",
   function(event) {
 
-    const modal =
-      document.getElementById("rsvpModal");
+    const rsvp =
+      document.getElementById(
+        "rsvpModal"
+      );
 
+    const bit =
+      document.getElementById(
+        "bitModal"
+      );
 
-    if (
-      event.target === modal
-    ) {
+    const credit =
+      document.getElementById(
+        "creditModal"
+      );
 
+    if (event.target === rsvp) {
       closeRSVP();
+    }
 
+    if (event.target === bit) {
+      closeBit();
+    }
+
+    if (event.target === credit) {
+      closeCredit();
     }
 
   }
