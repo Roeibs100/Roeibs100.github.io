@@ -6,11 +6,10 @@
 
   <title>רועי & שיראל | The Wedding Day</title>
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Heebo:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Heebo:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
 
@@ -22,13 +21,11 @@
 
     :root {
       --cream: #f7f2e9;
-      --cream-light: #fbf8f2;
+      --cream2: #fbf8f2;
       --gold: #b28a4b;
-      --gold-light: #d2b477;
-      --brown: #39342e;
-      --brown-light: #6d6459;
-      --green: #7f8871;
-      --border: rgba(178, 138, 75, 0.38);
+      --gold-light: #d8bc82;
+      --brown: #302c27;
+      --green: #7d8871;
     }
 
     html {
@@ -37,242 +34,564 @@
 
     body {
       min-height: 100vh;
-      background: #e8e1d5;
+      background: #ded6c9;
       color: var(--brown);
       overflow-x: hidden;
     }
 
-    /* ========================================
-       MAIN PAGE
-    ======================================== */
+
+    /* =====================================================
+       OPENING SCREEN
+    ===================================================== */
+
+    #opening {
+      position: fixed;
+      inset: 0;
+
+      z-index: 9999;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(255,255,255,0.9),
+          rgba(247,242,233,0.98) 60%,
+          #e8dfd1 100%
+        );
+
+      transition:
+        opacity 1s ease,
+        visibility 1s ease,
+        transform 1s ease;
+    }
+
+    #opening.opened {
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(1.08);
+      pointer-events: none;
+    }
+
+    /* מסגרת */
+
+    .opening-frame {
+      position: absolute;
+      inset: 15px;
+
+      border: 1px solid rgba(178,138,75,0.55);
+    }
+
+    .opening-frame::after {
+      content: "";
+
+      position: absolute;
+      inset: 8px;
+
+      border: 1px solid rgba(178,138,75,0.16);
+    }
+
+
+    /* קווים זהובים */
+
+    .opening-circle {
+      position: absolute;
+
+      width: 420px;
+      height: 650px;
+
+      border: 1px solid rgba(178,138,75,0.38);
+
+      border-radius: 50%;
+
+      transform: rotate(-18deg);
+    }
+
+    .opening-circle.one {
+      top: -340px;
+      right: -210px;
+    }
+
+    .opening-circle.two {
+      bottom: -350px;
+      left: -220px;
+      transform: rotate(15deg);
+    }
+
+
+    /* עלים */
+
+    .opening-leaves {
+      position: absolute;
+
+      width: 210px;
+      height: 300px;
+
+      opacity: 0.48;
+    }
+
+    .opening-leaves.left {
+      top: -10px;
+      left: -25px;
+    }
+
+    .opening-leaves.right {
+      bottom: -20px;
+      right: -25px;
+
+      transform: rotate(180deg);
+    }
+
+    .branch-stem {
+      position: absolute;
+
+      width: 2px;
+      height: 270px;
+
+      background:
+        linear-gradient(
+          to bottom,
+          transparent,
+          #a89a83,
+          #b8aa93
+        );
+
+      left: 75px;
+      top: 10px;
+
+      transform: rotate(30deg);
+    }
+
+    .opening-leaf {
+      position: absolute;
+
+      width: 48px;
+      height: 22px;
+
+      border-radius: 100% 0 100% 0;
+
+      background:
+        linear-gradient(
+          135deg,
+          #aaa48e,
+          #777966
+        );
+    }
+
+    .opening-leaf:nth-child(2) {
+      left: 38px;
+      top: 65px;
+      transform: rotate(-35deg);
+    }
+
+    .opening-leaf:nth-child(3) {
+      left: 85px;
+      top: 100px;
+      transform: rotate(30deg);
+    }
+
+    .opening-leaf:nth-child(4) {
+      left: 25px;
+      top: 135px;
+      transform: rotate(-45deg);
+    }
+
+    .opening-leaf:nth-child(5) {
+      left: 80px;
+      top: 170px;
+      transform: rotate(25deg);
+    }
+
+    .opening-leaf:nth-child(6) {
+      left: 15px;
+      top: 205px;
+      transform: rotate(-55deg);
+    }
+
+    .opening-leaf:nth-child(7) {
+      left: 75px;
+      top: 235px;
+      transform: rotate(20deg);
+    }
+
+
+    /* תוכן הפתיחה */
+
+    .opening-content {
+      position: relative;
+
+      z-index: 5;
+
+      width: 100%;
+      max-width: 430px;
+
+      padding: 35px;
+
+      text-align: center;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+
+    .opening-monogram {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 14px;
+
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: 43px;
+
+      color: var(--gold);
+
+      letter-spacing: 5px;
+
+      margin-bottom: 8px;
+    }
+
+    .opening-monogram-line {
+      width: 1px;
+      height: 43px;
+
+      background: var(--gold);
+    }
+
+
+    .opening-heart {
+      color: var(--gold);
+
+      font-size: 17px;
+
+      margin-bottom: 35px;
+    }
+
+
+    .opening-title {
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: 18px;
+
+      letter-spacing: 6px;
+
+      color: #4d473f;
+
+      margin-bottom: 22px;
+    }
+
+
+    .opening-names {
+      font-family: "Heebo", sans-serif;
+
+      font-size: 52px;
+
+      font-weight: 300;
+
+      line-height: 1.1;
+
+      color: #292621;
+
+      white-space: nowrap;
+
+      margin-bottom: 20px;
+    }
+
+    .opening-names span {
+      font-family: "Cormorant Garamond", serif;
+
+      color: var(--gold);
+
+      font-size: 48px;
+
+      font-style: italic;
+
+      margin: 0 8px;
+    }
+
+
+    .opening-subtitle {
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: 17px;
+
+      letter-spacing: 5px;
+
+      color: #807467;
+
+      margin-bottom: 45px;
+    }
+
+
+    /* =====================================================
+       WAX SEAL
+    ===================================================== */
+
+    .seal-button {
+      position: relative;
+
+      width: 115px;
+      height: 115px;
+
+      border-radius: 50%;
+
+      border: 1px solid rgba(178,138,75,0.7);
+
+      background:
+        radial-gradient(
+          circle at 35% 30%,
+          #d5b87d,
+          #a87c3f 75%
+        );
+
+      box-shadow:
+        0 10px 30px rgba(75,58,35,0.22),
+        inset 0 0 0 5px rgba(255,255,255,0.12),
+        inset 0 0 0 7px rgba(93,66,32,0.13);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      cursor: pointer;
+
+      transition:
+        transform .35s ease,
+        box-shadow .35s ease;
+    }
+
+    .seal-button:hover {
+      transform: scale(1.06);
+
+      box-shadow:
+        0 15px 40px rgba(75,58,35,0.3),
+        inset 0 0 0 5px rgba(255,255,255,0.12);
+    }
+
+    .seal-inner {
+      width: 86px;
+      height: 86px;
+
+      border-radius: 50%;
+
+      border: 1px solid rgba(255,255,255,0.45);
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      color: #fff9ed;
+
+      font-family: "Cormorant Garamond", serif;
+    }
+
+    .seal-rs {
+      font-size: 27px;
+
+      letter-spacing: 2px;
+
+      margin-bottom: 2px;
+    }
+
+    .seal-text {
+      font-size: 11px;
+
+      letter-spacing: 2px;
+    }
+
+
+    .opening-click {
+      margin-top: 25px;
+
+      font-family: "Heebo", sans-serif;
+
+      font-size: 14px;
+
+      font-weight: 300;
+
+      color: #81776b;
+
+      letter-spacing: 1px;
+
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%, 100% {
+        opacity: .55;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+    }
+
+
+    /* =====================================================
+       MAIN INVITATION
+    ===================================================== */
 
     .page {
       position: relative;
+
       width: 100%;
       max-width: 560px;
+
       min-height: 100vh;
+
       margin: auto;
+
       overflow: hidden;
 
       background:
         radial-gradient(
           ellipse at center,
-          rgba(255,255,255,0.75) 0%,
-          rgba(247,242,233,0.92) 55%,
-          rgba(235,225,210,0.98) 100%
+          rgba(255,255,255,.75),
+          rgba(247,242,233,.94) 60%,
+          rgba(235,225,210,.98)
         );
 
       box-shadow:
-        0 0 50px rgba(54, 45, 34, 0.15);
+        0 0 50px rgba(54,45,34,.15);
     }
 
-    /* ========================================
-       GOLD DECORATIVE FRAME
-    ======================================== */
 
     .frame {
       position: absolute;
+
       inset: 14px;
-      border: 1px solid var(--border);
+
+      border: 1px solid rgba(178,138,75,.38);
+
       pointer-events: none;
+
       z-index: 2;
     }
 
-    .frame::before {
+    .frame::after {
       content: "";
+
       position: absolute;
+
       inset: 7px;
-      border: 1px solid rgba(178,138,75,0.13);
+
+      border: 1px solid rgba(178,138,75,.13);
     }
 
-    /* ========================================
-       GOLD CURVED LINES
-    ======================================== */
 
     .gold-line {
       position: absolute;
-      width: 240px;
-      height: 420px;
-      border: 1px solid rgba(178,138,75,0.55);
+
+      width: 250px;
+      height: 430px;
+
+      border: 1px solid rgba(178,138,75,.45);
+
       border-radius: 50%;
+
       pointer-events: none;
     }
 
     .gold-line.top {
       top: -250px;
       right: -150px;
+
       transform: rotate(-20deg);
     }
 
     .gold-line.bottom {
-      bottom: -260px;
+      bottom: -270px;
       left: -160px;
+
       transform: rotate(-20deg);
     }
 
-    /* ========================================
-       BOTANICAL DECORATIONS
-    ======================================== */
 
-    .branch {
-      position: absolute;
-      width: 190px;
-      height: 300px;
-      opacity: 0.55;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .branch.top-left {
-      top: -5px;
-      left: -15px;
-      transform: rotate(-10deg);
-    }
-
-    .branch.bottom-right {
-      bottom: -20px;
-      right: -15px;
-      transform: rotate(170deg);
-    }
-
-    .stem {
-      position: absolute;
-      width: 2px;
-      height: 250px;
-      background: linear-gradient(
-        to bottom,
-        transparent,
-        #9c917e,
-        #b4a58e
-      );
-      left: 70px;
-      top: 20px;
-      transform: rotate(28deg);
-      transform-origin: bottom;
-    }
-
-    .leaf {
-      position: absolute;
-      width: 42px;
-      height: 20px;
-      background: linear-gradient(
-        135deg,
-        #aaa28e,
-        #7f806f
-      );
-      border-radius: 100% 0 100% 0;
-      opacity: 0.65;
-    }
-
-    .leaf:nth-child(2) {
-      left: 32px;
-      top: 70px;
-      transform: rotate(-35deg);
-    }
-
-    .leaf:nth-child(3) {
-      left: 85px;
-      top: 105px;
-      transform: rotate(30deg);
-    }
-
-    .leaf:nth-child(4) {
-      left: 25px;
-      top: 135px;
-      transform: rotate(-45deg);
-    }
-
-    .leaf:nth-child(5) {
-      left: 80px;
-      top: 165px;
-      transform: rotate(25deg);
-    }
-
-    .leaf:nth-child(6) {
-      left: 15px;
-      top: 195px;
-      transform: rotate(-55deg);
-    }
-
-    .leaf:nth-child(7) {
-      left: 75px;
-      top: 225px;
-      transform: rotate(20deg);
-    }
-
-    /* ========================================
-       CONTENT
-    ======================================== */
+    /* =====================================================
+       MAIN CONTENT
+    ===================================================== */
 
     .content {
       position: relative;
+
       z-index: 5;
+
       min-height: 100vh;
 
       display: flex;
+
       flex-direction: column;
+
       align-items: center;
 
-      padding: 65px 30px 55px;
+      padding: 65px 25px 50px;
+
       text-align: center;
     }
 
-    /* ========================================
-       MONOGRAM
-    ======================================== */
 
     .monogram {
       display: flex;
+
       align-items: center;
-      justify-content: center;
+
       gap: 14px;
+
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: 42px;
 
       color: var(--gold);
 
-      font-family: "Cormorant Garamond", serif;
-      font-size: 42px;
-      font-weight: 400;
-
       letter-spacing: 5px;
 
-      margin-bottom: 9px;
+      margin-bottom: 8px;
     }
 
     .monogram-line {
       width: 1px;
-      height: 43px;
+      height: 42px;
+
       background: var(--gold);
-      opacity: 0.75;
     }
 
     .heart {
       color: var(--gold);
-      font-size: 18px;
+
+      font-size: 17px;
+
       margin-bottom: 28px;
     }
 
-    /* ========================================
-       WEDDING TITLE
-    ======================================== */
 
     .wedding-title {
       font-family: "Cormorant Garamond", serif;
+
       font-size: 17px;
+
       letter-spacing: 6px;
-      color: #4c463e;
 
       margin-bottom: 18px;
     }
 
+
     .names {
       font-family: "Heebo", sans-serif;
+
+      font-size: clamp(47px, 13vw, 68px);
+
       font-weight: 300;
 
-      font-size: clamp(47px, 13vw, 69px);
+      line-height: 1.05;
 
       color: #282521;
-
-      line-height: 1.05;
 
       white-space: nowrap;
 
@@ -280,34 +599,35 @@
     }
 
     .names .and {
-      color: var(--gold);
       font-family: "Cormorant Garamond", serif;
-      font-style: italic;
+
+      color: var(--gold);
+
       font-size: 55px;
 
-      margin: 0 10px;
+      font-style: italic;
+
+      margin: 0 8px;
     }
 
-    /* ========================================
-       ORNAMENT
-    ======================================== */
 
     .ornament {
       display: flex;
+
       align-items: center;
-      justify-content: center;
 
       width: 100%;
+
       max-width: 390px;
 
-      margin: 5px auto 35px;
-
-      color: var(--gold);
+      margin: 5px auto 32px;
     }
 
     .ornament-line {
       flex: 1;
+
       height: 1px;
+
       background: linear-gradient(
         to right,
         transparent,
@@ -324,30 +644,33 @@
     }
 
     .ornament-center {
+      color: var(--gold);
+
       margin: 0 12px;
-      font-size: 17px;
+
       transform: rotate(45deg);
+
+      font-size: 14px;
     }
 
-    /* ========================================
-       VENUE
-    ======================================== */
 
     .venue-small {
       font-family: "Heebo", sans-serif;
-      font-size: 17px;
-      font-weight: 300;
 
-      color: #4e4942;
+      font-size: 17px;
+
+      font-weight: 300;
 
       margin-bottom: 0;
     }
+
 
     .venue {
       font-family: "Cormorant Garamond", serif;
 
       font-size: 68px;
-      line-height: 0.95;
+
+      line-height: .95;
 
       letter-spacing: 8px;
 
@@ -356,10 +679,12 @@
       margin: 3px 0 7px;
     }
 
+
     .venue-sub {
       font-family: "Cormorant Garamond", serif;
 
       font-size: 18px;
+
       letter-spacing: 5px;
 
       color: var(--gold);
@@ -367,94 +692,100 @@
       margin-bottom: 32px;
     }
 
-    /* ========================================
-       DATE - HIDDEN
-    ======================================== */
+
+    /* התאריך עדיין מוסתר */
 
     .date-hidden {
       display: none;
     }
 
-    /* ========================================
+
+    /* =====================================================
        BUTTONS
-    ======================================== */
+    ===================================================== */
 
     .buttons {
       width: 100%;
+
       max-width: 410px;
 
       display: flex;
+
       flex-direction: column;
 
       gap: 12px;
-
-      margin-top: 4px;
     }
+
 
     .button {
       position: relative;
 
       width: 100%;
-      min-height: 74px;
+
+      min-height: 70px;
 
       display: flex;
+
       align-items: center;
+
       justify-content: center;
 
       text-decoration: none;
 
-      background: rgba(255,255,255,0.42);
+      background: rgba(255,255,255,.45);
 
       color: #39342e;
 
-      border: 1px solid rgba(142,124,94,0.38);
+      border: 1px solid rgba(142,124,94,.38);
 
       border-radius: 10px;
 
       font-family: "Heebo", sans-serif;
+
       font-size: 18px;
+
       font-weight: 300;
 
       cursor: pointer;
 
-      transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        background 0.25s ease;
+      transition: .25s;
     }
+
 
     .button:hover {
       transform: translateY(-2px);
 
-      background: rgba(255,255,255,0.75);
+      background: rgba(255,255,255,.75);
 
       box-shadow:
-        0 8px 25px rgba(91,76,54,0.10);
+        0 8px 25px rgba(91,76,54,.1);
     }
+
 
     .button-icon {
       position: absolute;
-      right: 23px;
+
+      right: 22px;
 
       font-size: 25px;
 
       color: var(--gold);
     }
+
 
     .button-arrow {
       position: absolute;
-      left: 22px;
 
-      font-family: Arial, sans-serif;
+      left: 20px;
+
       font-size: 25px;
 
       color: var(--gold);
     }
 
-    /* RSVP */
 
     .button.rsvp {
-      color: #fff;
+      color: white;
 
       background:
         linear-gradient(
@@ -463,10 +794,10 @@
           #302c28
         );
 
-      border-color: #a98752;
+      border-color: #b28a4b;
 
       box-shadow:
-        0 8px 25px rgba(51,45,38,0.18);
+        0 8px 25px rgba(51,45,38,.18);
     }
 
     .button.rsvp .button-icon,
@@ -474,32 +805,30 @@
       color: #d8b878;
     }
 
-    /* BIT */
 
     .button.bit {
-      border-color: rgba(113,132,102,0.55);
+      border-color: rgba(113,132,102,.55);
     }
+
 
     .bit-logo {
       position: absolute;
-      right: 20px;
+
+      right: 19px;
 
       font-family: Arial, sans-serif;
+
+      font-size: 24px;
+
       font-weight: 600;
 
-      color: #6fa55f;
-      font-size: 24px;
+      color: #70a65f;
     }
 
-    /* CREDIT */
 
-    .button.credit {
-      border-color: rgba(166,143,103,0.45);
-    }
-
-    /* ========================================
+    /* =====================================================
        FOOTER
-    ======================================== */
+    ===================================================== */
 
     .footer {
       width: 100%;
@@ -507,34 +836,43 @@
       margin-top: 43px;
 
       display: flex;
+
       flex-direction: column;
+
       align-items: center;
     }
 
-    .footer-ornament {
-      display: flex;
-      align-items: center;
 
+    .footer-ornament {
       width: 190px;
 
-      margin-bottom: 19px;
+      display: flex;
+
+      align-items: center;
+
+      margin-bottom: 18px;
     }
 
     .footer-line {
       flex: 1;
+
       height: 1px;
-      background: rgba(178,138,75,0.5);
+
+      background: rgba(178,138,75,.5);
     }
 
     .footer-heart {
       color: var(--gold);
+
       margin: 0 10px;
     }
+
 
     .with-love {
       font-family: "Cormorant Garamond", serif;
 
       font-size: 27px;
+
       font-style: italic;
 
       color: var(--gold);
@@ -542,31 +880,33 @@
       margin-bottom: 5px;
     }
 
+
     .footer-names {
       font-family: "Cormorant Garamond", serif;
 
       font-size: 17px;
 
       letter-spacing: 5px;
-
-      color: #38332d;
     }
 
-    /* ========================================
-       MODAL
-    ======================================== */
+
+    /* =====================================================
+       RSVP MODAL
+    ===================================================== */
 
     .modal {
       display: none;
 
       position: fixed;
+
       inset: 0;
 
-      z-index: 999;
+      z-index: 10000;
 
-      background: rgba(35,31,27,0.62);
+      background: rgba(35,31,27,.65);
 
       align-items: center;
+
       justify-content: center;
 
       padding: 20px;
@@ -574,10 +914,12 @@
       backdrop-filter: blur(5px);
     }
 
+
     .modal-content {
       position: relative;
 
       width: 100%;
+
       max-width: 420px;
 
       padding: 42px 28px 32px;
@@ -596,33 +938,39 @@
       border-radius: 12px;
 
       box-shadow:
-        0 20px 60px rgba(0,0,0,0.25);
+        0 20px 60px rgba(0,0,0,.25);
     }
+
 
     .modal-content h2 {
       font-family: "Cormorant Garamond", serif;
 
       font-size: 36px;
+
       font-weight: 400;
 
       margin-bottom: 5px;
     }
 
+
     .modal-content p {
       font-family: "Heebo", sans-serif;
 
       font-size: 16px;
+
       font-weight: 300;
 
-      color: var(--brown-light);
+      color: #756d63;
 
       margin-bottom: 25px;
     }
+
 
     .close {
       position: absolute;
 
       left: 18px;
+
       top: 10px;
 
       font-size: 28px;
@@ -632,6 +980,7 @@
       cursor: pointer;
     }
 
+
     .choice {
       width: 100%;
 
@@ -639,11 +988,11 @@
 
       margin: 7px 0;
 
-      border: 1px solid rgba(142,124,94,0.5);
+      border: 1px solid rgba(142,124,94,.5);
 
       border-radius: 7px;
 
-      background: rgba(255,255,255,0.45);
+      background: rgba(255,255,255,.45);
 
       color: #413b34;
 
@@ -652,35 +1001,39 @@
       font-size: 17px;
 
       cursor: pointer;
-
-      transition: 0.2s;
     }
+
 
     .choice:hover {
       background: #eee6d9;
     }
 
-    /* ========================================
+
+    /* =====================================================
        MOBILE
-    ======================================== */
+    ===================================================== */
 
     @media (max-width: 450px) {
 
-      .content {
-        padding: 58px 23px 45px;
+      .opening-content {
+        padding: 25px;
       }
 
-      .frame {
-        inset: 9px;
+      .opening-names {
+        font-size: 45px;
       }
 
-      .monogram {
-        font-size: 36px;
+      .opening-names span {
+        font-size: 42px;
       }
 
-      .wedding-title {
-        font-size: 14px;
+      .opening-title {
+        font-size: 15px;
         letter-spacing: 4px;
+      }
+
+      .content {
+        padding: 58px 22px 45px;
       }
 
       .names {
@@ -689,26 +1042,16 @@
 
       .names .and {
         font-size: 43px;
-        margin: 0 5px;
       }
 
       .venue {
         font-size: 57px;
       }
 
-      .venue-sub {
-        font-size: 16px;
-        letter-spacing: 4px;
-      }
-
       .button {
         min-height: 67px;
-        font-size: 17px;
       }
 
-      .branch {
-        opacity: 0.4;
-      }
     }
 
   </style>
@@ -717,369 +1060,567 @@
 
 <body>
 
-  <div class="page">
 
-    <!-- Decorative frame -->
-    <div class="frame"></div>
+<!-- =====================================================
+     OPENING SCREEN
+===================================================== -->
 
-    <!-- Gold curves -->
-    <div class="gold-line top"></div>
-    <div class="gold-line bottom"></div>
+<div id="opening">
 
-    <!-- Botanical branches -->
-    <div class="branch top-left">
-      <div class="stem"></div>
-      <div class="leaf"></div>
-      <div class="leaf"></div>
-      <div class="leaf"></div>
-      <div class="leaf"></div>
-      <div class="leaf"></div>
-      <div class="leaf"></div>
-    </div>
+  <div class="opening-frame"></div>
 
-    <div class="branch bottom-right">
-      <div class="stem"></div>
-      <div class="leaf"></div>
-      <div class="leaf"></div>
-      <div class="leaf"></div>
-      <div class="leaf"></div>
-      <div class="leaf"></div>
-      <div class="leaf"></div>
-    </div>
+  <div class="opening-circle one"></div>
+  <div class="opening-circle two"></div>
 
 
-    <main class="content">
+  <!-- עלים שמאל -->
+  <div class="opening-leaves left">
 
-      <!-- Monogram -->
-      <div class="monogram">
-        <span>R</span>
-        <div class="monogram-line"></div>
-        <span>S</span>
-      </div>
+    <div class="branch-stem"></div>
 
-      <div class="heart">♥</div>
-
-
-      <!-- Wedding -->
-      <div class="wedding-title">
-        THE WEDDING OF
-      </div>
-
-
-      <!-- Names -->
-      <div class="names">
-        רועי
-        <span class="and">&amp;</span>
-        שיראל
-      </div>
-
-
-      <!-- Ornament -->
-      <div class="ornament">
-        <div class="ornament-line"></div>
-
-        <div class="ornament-center">◆</div>
-
-        <div class="ornament-line right"></div>
-      </div>
-
-
-      <!-- Venue -->
-      <div class="venue-small">
-        מתחם האירועים
-      </div>
-
-      <div class="venue">
-        ADIA
-      </div>
-
-      <div class="venue-sub">
-        ADIA EVENTS
-      </div>
-
-
-      <!-- Hidden date -->
-      <div class="date-hidden">
-        27.12.2026 | 19:30
-      </div>
-
-
-      <!-- Buttons -->
-      <div class="buttons">
-
-        <!-- RSVP -->
-        <button
-          class="button rsvp"
-          onclick="openRSVP()"
-        >
-          <span class="button-icon">♡</span>
-
-          <span>
-            אישור הגעה
-          </span>
-
-          <span class="button-arrow">‹</span>
-        </button>
-
-
-        <!-- Waze -->
-        <a
-          class="button"
-          href="https://www.waze.com/"
-          target="_blank"
-        >
-          <span class="button-icon">⌖</span>
-
-          <span>
-            ניווט לאירוע
-          </span>
-
-          <span class="button-arrow">‹</span>
-        </a>
-
-
-        <!-- Calendar -->
-        <a
-          class="button"
-          href="#"
-          onclick="addToCalendar(event)"
-        >
-          <span class="button-icon">▣</span>
-
-          <span>
-            הוספה ליומן
-          </span>
-
-          <span class="button-arrow">‹</span>
-        </a>
-
-
-        <!-- BIT -->
-        <a
-          class="button bit"
-          href="#"
-          onclick="openBit(event)"
-        >
-          <span class="bit-logo">
-            bit
-          </span>
-
-          <span>
-            מתנה ב-Bit
-          </span>
-
-          <span class="button-arrow">‹</span>
-        </a>
-
-
-        <!-- Credit -->
-        <a
-          class="button credit"
-          href="#"
-          onclick="openCredit(event)"
-        >
-          <span class="button-icon">▱</span>
-
-          <span>
-            מתנה באשראי
-          </span>
-
-          <span class="button-arrow">‹</span>
-        </a>
-
-      </div>
-
-
-      <!-- Footer -->
-      <div class="footer">
-
-        <div class="footer-ornament">
-          <div class="footer-line"></div>
-
-          <div class="footer-heart">
-            ♥
-          </div>
-
-          <div class="footer-line"></div>
-        </div>
-
-        <div class="with-love">
-          with love
-        </div>
-
-        <div class="footer-names">
-          ROEI & SHIREL
-        </div>
-
-      </div>
-
-    </main>
+    <div class="opening-leaf"></div>
+    <div class="opening-leaf"></div>
+    <div class="opening-leaf"></div>
+    <div class="opening-leaf"></div>
+    <div class="opening-leaf"></div>
+    <div class="opening-leaf"></div>
 
   </div>
 
 
-  <!-- ========================================
-       RSVP MODAL
-  ======================================== -->
+  <!-- עלים ימין -->
+  <div class="opening-leaves right">
+
+    <div class="branch-stem"></div>
+
+    <div class="opening-leaf"></div>
+    <div class="opening-leaf"></div>
+    <div class="opening-leaf"></div>
+    <div class="opening-leaf"></div>
+    <div class="opening-leaf"></div>
+    <div class="opening-leaf"></div>
+
+  </div>
+
 
   <div
-    class="modal"
-    id="rsvpModal"
+    class="opening-content"
+    onclick="openInvitation()"
   >
 
-    <div class="modal-content">
+    <div class="opening-monogram">
 
-      <span
-        class="close"
-        onclick="closeRSVP()"
-      >
-        ×
-      </span>
+      <span>R</span>
 
-      <h2>
-        אישור הגעה
-      </h2>
+      <div class="opening-monogram-line"></div>
 
-      <p>
-        נשמח לדעת אם תוכלו לחגוג איתנו ❤️
-      </p>
+      <span>S</span>
 
-      <button
-        class="choice"
-        onclick="rsvpYes()"
-      >
-        ❤️ כן, אני מגיע/ה
-      </button>
+    </div>
 
-      <button
-        class="choice"
-        onclick="rsvpNo()"
-      >
-        לצערי לא אוכל להגיע
-      </button>
 
+    <div class="opening-heart">
+      ♥
+    </div>
+
+
+    <div class="opening-title">
+      THE WEDDING OF
+    </div>
+
+
+    <div class="opening-names">
+
+      רועי
+
+      <span>&amp;</span>
+
+      שיראל
+
+    </div>
+
+
+    <div class="opening-subtitle">
+      OUR SPECIAL DAY
+    </div>
+
+
+    <!-- חותמת -->
+    <div class="seal-button">
+
+      <div class="seal-inner">
+
+        <div class="seal-rs">
+          R & S
+        </div>
+
+        <div class="seal-text">
+          OPEN
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="opening-click">
+      לחצו לפתיחת ההזמנה
     </div>
 
   </div>
 
-
-  <script>
-
-    /* ========================================
-       RSVP
-    ======================================== */
-
-    function openRSVP() {
-      document.getElementById("rsvpModal").style.display = "flex";
-    }
-
-    function closeRSVP() {
-      document.getElementById("rsvpModal").style.display = "none";
-    }
-
-    function rsvpYes() {
-
-      alert(
-        "מעולה ❤️\n\nבשלב הבא נחבר כאן את טופס אישור ההגעה."
-      );
-
-    }
-
-    function rsvpNo() {
-
-      alert(
-        "תודה על העדכון ❤️"
-      );
-
-    }
+</div>
 
 
-    /* ========================================
-       BIT
-    ======================================== */
 
-    function openBit(event) {
+<!-- =====================================================
+     MAIN INVITATION
+===================================================== -->
 
-      event.preventDefault();
+<div class="page">
 
-      alert(
-        "כאן נחבר את קישור ה-Bit שלכם."
-      );
+  <div class="frame"></div>
 
-    }
+  <div class="gold-line top"></div>
+  <div class="gold-line bottom"></div>
 
 
-    /* ========================================
-       CREDIT CARD
-    ======================================== */
-
-    function openCredit(event) {
-
-      event.preventDefault();
-
-      alert(
-        "כאן נחבר את עמוד התשלום באשראי."
-      );
-
-    }
+  <main class="content">
 
 
-    /* ========================================
-       GOOGLE CALENDAR
-    ======================================== */
+    <div class="monogram">
 
-    function addToCalendar(event) {
+      <span>R</span>
 
-      event.preventDefault();
+      <div class="monogram-line"></div>
 
-      const title =
-        "החתונה של רועי ושיראל";
+      <span>S</span>
 
-      const start =
-        "20261227T193000";
-
-      const end =
-        "20261227T233000";
-
-      const location =
-        "מתחם האירועים ADIA";
-
-      const url =
-        "https://calendar.google.com/calendar/render" +
-        "?action=TEMPLATE" +
-        "&text=" +
-        encodeURIComponent(title) +
-        "&dates=" +
-        start +
-        "/" +
-        end +
-        "&location=" +
-        encodeURIComponent(location);
-
-      window.open(url, "_blank");
-
-    }
+    </div>
 
 
-    /* ========================================
-       CLOSE MODAL WHEN CLICKING OUTSIDE
-    ======================================== */
+    <div class="heart">
+      ♥
+    </div>
 
-    window.addEventListener(
-      "click",
-      function(event) {
 
-        const modal =
-          document.getElementById("rsvpModal");
+    <div class="wedding-title">
+      THE WEDDING OF
+    </div>
 
-        if (event.target === modal) {
-          closeRSVP();
-        }
 
-      }
+    <div class="names">
+
+      רועי
+
+      <span class="and">
+        &amp;
+      </span>
+
+      שיראל
+
+    </div>
+
+
+    <div class="ornament">
+
+      <div class="ornament-line"></div>
+
+      <div class="ornament-center">
+        ◆
+      </div>
+
+      <div class="ornament-line right"></div>
+
+    </div>
+
+
+    <div class="venue-small">
+      מתחם האירועים
+    </div>
+
+
+    <div class="venue">
+      ADIA
+    </div>
+
+
+    <div class="venue-sub">
+      ADIA EVENTS
+    </div>
+
+
+    <!-- התאריך עדיין מוסתר -->
+    <div class="date-hidden">
+      27.12.2026 | 19:30
+    </div>
+
+
+    <!-- כפתורים -->
+
+    <div class="buttons">
+
+
+      <!-- אישור הגעה -->
+
+      <button
+        class="button rsvp"
+        onclick="openRSVP()"
+      >
+
+        <span class="button-icon">
+          ♡
+        </span>
+
+        <span>
+          אישור הגעה
+        </span>
+
+        <span class="button-arrow">
+          ‹
+        </span>
+
+      </button>
+
+
+      <!-- ניווט -->
+
+      <a
+        class="button"
+        href="https://www.waze.com/"
+        target="_blank"
+      >
+
+        <span class="button-icon">
+          ⌖
+        </span>
+
+        <span>
+          ניווט לאירוע
+        </span>
+
+        <span class="button-arrow">
+          ‹
+        </span>
+
+      </a>
+
+
+      <!-- יומן -->
+
+      <a
+        class="button"
+        href="#"
+        onclick="addToCalendar(event)"
+      >
+
+        <span class="button-icon">
+          ▣
+        </span>
+
+        <span>
+          הוספה ליומן
+        </span>
+
+        <span class="button-arrow">
+          ‹
+        </span>
+
+      </a>
+
+
+      <!-- BIT -->
+
+      <a
+        class="button bit"
+        href="#"
+        onclick="openBit(event)"
+      >
+
+        <span class="bit-logo">
+          bit
+        </span>
+
+        <span>
+          מתנה ב-Bit
+        </span>
+
+        <span class="button-arrow">
+          ‹
+        </span>
+
+      </a>
+
+
+      <!-- אשראי -->
+
+      <a
+        class="button"
+        href="#"
+        onclick="openCredit(event)"
+      >
+
+        <span class="button-icon">
+          ▱
+        </span>
+
+        <span>
+          מתנה באשראי
+        </span>
+
+        <span class="button-arrow">
+          ‹
+        </span>
+
+      </a>
+
+
+    </div>
+
+
+    <!-- Footer -->
+
+    <div class="footer">
+
+      <div class="footer-ornament">
+
+        <div class="footer-line"></div>
+
+        <div class="footer-heart">
+          ♥
+        </div>
+
+        <div class="footer-line"></div>
+
+      </div>
+
+
+      <div class="with-love">
+        with love
+      </div>
+
+
+      <div class="footer-names">
+        ROEI & SHIREL
+      </div>
+
+    </div>
+
+
+  </main>
+
+</div>
+
+
+
+<!-- =====================================================
+     RSVP
+===================================================== -->
+
+<div
+  class="modal"
+  id="rsvpModal"
+>
+
+  <div class="modal-content">
+
+    <span
+      class="close"
+      onclick="closeRSVP()"
+    >
+      ×
+    </span>
+
+
+    <h2>
+      אישור הגעה
+    </h2>
+
+
+    <p>
+      נשמח לדעת אם תוכלו לחגוג איתנו ❤️
+    </p>
+
+
+    <button
+      class="choice"
+      onclick="rsvpYes()"
+    >
+      ❤️ כן, אני מגיע/ה
+    </button>
+
+
+    <button
+      class="choice"
+      onclick="rsvpNo()"
+    >
+      לצערי לא אוכל להגיע
+    </button>
+
+  </div>
+
+</div>
+
+
+
+<script>
+
+
+  /* =====================================================
+     OPEN INVITATION
+  ===================================================== */
+
+  function openInvitation() {
+
+    const opening =
+      document.getElementById("opening");
+
+    opening.classList.add("opened");
+
+    /*
+      אחרי הפתיחה מאפשרים גלילה רגילה
+    */
+
+    document.body.style.overflow = "auto";
+
+  }
+
+
+  /* =====================================================
+     RSVP
+  ===================================================== */
+
+  function openRSVP() {
+
+    document.getElementById(
+      "rsvpModal"
+    ).style.display = "flex";
+
+  }
+
+
+  function closeRSVP() {
+
+    document.getElementById(
+      "rsvpModal"
+    ).style.display = "none";
+
+  }
+
+
+  function rsvpYes() {
+
+    alert(
+      "מעולה ❤️\n\nבשלב הבא נחבר כאן את טופס אישור ההגעה."
     );
 
-  </script>
+  }
+
+
+  function rsvpNo() {
+
+    alert(
+      "תודה על העדכון ❤️"
+    );
+
+  }
+
+
+  /* =====================================================
+     BIT
+  ===================================================== */
+
+  function openBit(event) {
+
+    event.preventDefault();
+
+    alert(
+      "כאן נחבר את קישור ה-Bit שלכם."
+    );
+
+  }
+
+
+  /* =====================================================
+     CREDIT
+  ===================================================== */
+
+  function openCredit(event) {
+
+    event.preventDefault();
+
+    alert(
+      "כאן נחבר את עמוד התשלום באשראי."
+    );
+
+  }
+
+
+  /* =====================================================
+     GOOGLE CALENDAR
+  ===================================================== */
+
+  function addToCalendar(event) {
+
+    event.preventDefault();
+
+    const title =
+      "החתונה של רועי ושיראל";
+
+    const start =
+      "20261227T193000";
+
+    const end =
+      "20261227T233000";
+
+    const location =
+      "מתחם האירועים ADIA";
+
+    const url =
+      "https://calendar.google.com/calendar/render" +
+      "?action=TEMPLATE" +
+      "&text=" +
+      encodeURIComponent(title) +
+      "&dates=" +
+      start +
+      "/" +
+      end +
+      "&location=" +
+      encodeURIComponent(location);
+
+    window.open(
+      url,
+      "_blank"
+    );
+
+  }
+
+
+  /* =====================================================
+     CLOSE MODAL
+  ===================================================== */
+
+  window.addEventListener(
+    "click",
+    function(event) {
+
+      const modal =
+        document.getElementById("rsvpModal");
+
+      if (
+        event.target === modal
+      ) {
+
+        closeRSVP();
+
+      }
+
+    }
+  );
+
+
+</script>
+
 
 </body>
 </html>
