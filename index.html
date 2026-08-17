@@ -897,9 +897,6 @@ a{
   justify-content:center;
 }
 
-
-/* גוף היומן */
-
 .calendar-icon::before{
   content:"";
 
@@ -927,9 +924,6 @@ a{
     );
 }
 
-
-/* פס עליון */
-
 .calendar-icon::after{
   content:"";
 
@@ -951,9 +945,6 @@ a{
   background:
     rgba(173,135,71,.08);
 }
-
-
-/* נקודות פנימיות */
 
 .calendar-dots{
   position:absolute;
@@ -1122,7 +1113,7 @@ a{
 
 
 /* =====================================================
-   אישור הגעה
+   RSVP
 ===================================================== */
 
 .rsvp-card{
@@ -1166,7 +1157,7 @@ a{
 
 
 /* =====================================================
-   מיקום CSS
+   אייקון מיקום CSS
 ===================================================== */
 
 .location-icon{
@@ -1237,7 +1228,7 @@ a{
 
 
 /* =====================================================
-   כרטיס אשראי CSS
+   אשראי
 ===================================================== */
 
 .credit-icon{
@@ -2042,6 +2033,7 @@ a{
   <div class="opening-border"></div>
 
   <div class="opening-decoration top"></div>
+
   <div class="opening-decoration bottom"></div>
 
   <div class="leaf-decoration left">
@@ -2059,11 +2051,13 @@ a{
       THE WEDDING OF
     </div>
 
+
     <div class="opening-names">
       רועי
       <span>&amp;</span>
       שיראל
     </div>
+
 
     <div class="opening-subtitle">
       OUR SPECIAL DAY
@@ -2099,6 +2093,7 @@ a{
     <div class="opening-wedding">
       the wedding
     </div>
+
 
     <div class="opening-hint">
       לחצו על החותמת לפתיחת ההזמנה
@@ -2286,7 +2281,7 @@ a{
 
 
       <!-- =================================================
-           כפתור יומן
+           יומן
       ================================================= -->
 
       <button
@@ -2364,13 +2359,13 @@ a{
         </button>
 
 
-        <!-- מיקום -->
+        <!-- =================================================
+             מיקום - WAZE
+        ================================================= -->
 
-        <a
+        <button
           class="button"
-          href="https://www.waze.com/"
-          target="_blank"
-          rel="noopener"
+          onclick="openWaze()"
         >
 
           <div class="action-icon">
@@ -2387,7 +2382,7 @@ a{
             </div>
 
             <div class="action-subtitle">
-              מתחם האירועים ADIA
+              ניווט ישיר עם Waze
             </div>
 
           </div>
@@ -2397,15 +2392,14 @@ a{
             ‹
           </div>
 
-        </a>
+        </button>
 
 
         <!-- Bit -->
 
-        <a
+        <button
           class="button bit-card"
-          href="#"
-          onclick="openBit(event)"
+          onclick="openBit()"
         >
 
           <div class="action-icon">
@@ -2434,15 +2428,14 @@ a{
             ‹
           </div>
 
-        </a>
+        </button>
 
 
         <!-- אשראי -->
 
-        <a
+        <button
           class="button"
-          href="#"
-          onclick="openCredit(event)"
+          onclick="openCredit()"
         >
 
           <div class="action-icon">
@@ -2469,7 +2462,7 @@ a{
             ‹
           </div>
 
-        </a>
+        </button>
 
 
       </div>
@@ -2512,7 +2505,7 @@ a{
 
 
 <!-- =====================================================
-     חלון בחירת יומן
+     חלון יומן
 ===================================================== -->
 
 <div
@@ -2626,6 +2619,7 @@ a{
       אישור הגעה
     </h2>
 
+
     <p>
       נשמח לדעת אם תוכלו לחגוג איתנו
     </p>
@@ -2652,6 +2646,7 @@ a{
         מספר מוזמנים
       </label>
 
+
       <div class="guest-picker">
 
         <button
@@ -2661,12 +2656,14 @@ a{
           +
         </button>
 
+
         <input
           class="guest-count"
           id="guestCount"
           value="2"
           readonly
         >
+
 
         <button
           class="counter-btn"
@@ -2865,12 +2862,51 @@ const WEDDING_DATE =
 
 
 /*
-   כאשר יהיה לך קישור סליקה באשראי,
+   כשתקבל קישור סליקה באשראי,
    הדבק אותו כאן.
 */
 
 const CREDIT_PAYMENT_URL =
   "";
+
+
+/* =====================================================
+   WAZE
+===================================================== */
+
+/*
+   Waze Deep Link
+
+   כרגע החיפוש הוא:
+   "מתחם האירועים ADIA"
+
+   אם יש לך קישור Waze מדויק של האולם,
+   עדיף להחליף אותו כאן.
+*/
+
+const WAZE_URL =
+  "https://waze.com/ul" +
+  "?q=" +
+  encodeURIComponent(
+    "מתחם האירועים ADIA"
+  ) +
+  "&navigate=yes";
+
+
+function openWaze(){
+
+  /*
+     פתיחת Waze דרך Deep Link.
+
+     בטלפון שבו Waze מותקנת,
+     מערכת ההפעלה אמורה לפתוח
+     את אפליקציית Waze.
+  */
+
+  window.location.href =
+    WAZE_URL;
+
+}
 
 
 /* =====================================================
@@ -2880,9 +2916,13 @@ const CREDIT_PAYMENT_URL =
 function openInvitation(){
 
   const opening =
-    document.getElementById("opening");
+    document.getElementById(
+      "opening"
+    );
 
-  opening.classList.add("opened");
+  opening.classList.add(
+    "opened"
+  );
 
 
   setTimeout(function(){
@@ -2898,7 +2938,10 @@ function openInvitation(){
     document.body.style.overflow =
       "auto";
 
-    window.scrollTo(0,0);
+    window.scrollTo(
+      0,
+      0
+    );
 
   },1000);
 
@@ -2940,7 +2983,9 @@ function addToGoogleCalendar(){
     "?action=TEMPLATE" +
 
     "&text=" +
-    encodeURIComponent(title) +
+    encodeURIComponent(
+      title
+    ) +
 
     "&dates=" +
     start +
@@ -2948,7 +2993,9 @@ function addToGoogleCalendar(){
     end +
 
     "&location=" +
-    encodeURIComponent(location) +
+    encodeURIComponent(
+      location
+    ) +
 
     "&details=" +
     encodeURIComponent(
@@ -2994,7 +3041,9 @@ function downloadICS(){
 
     "END:VCALENDAR"
 
-  ].join("\r\n");
+  ].join(
+    "\r\n"
+  );
 
 
   const blob =
@@ -3008,11 +3057,16 @@ function downloadICS(){
 
 
   const url =
-    URL.createObjectURL(blob);
+    URL.createObjectURL(
+      blob
+    );
 
 
   const link =
-    document.createElement("a");
+    document.createElement(
+      "a"
+    );
+
 
   link.href =
     url;
@@ -3021,7 +3075,9 @@ function downloadICS(){
     "roei-shirel-wedding.ics";
 
 
-  document.body.appendChild(link);
+  document.body.appendChild(
+    link
+  );
 
   link.click();
 
@@ -3030,12 +3086,16 @@ function downloadICS(){
 
   setTimeout(function(){
 
-    URL.revokeObjectURL(url);
+    URL.revokeObjectURL(
+      url
+    );
 
   },1000);
 
 
-  closeModal("calendarModal");
+  closeModal(
+    "calendarModal"
+  );
 
 }
 
@@ -3054,37 +3114,48 @@ function openRSVP(){
 }
 
 
-function changeGuests(delta){
+function changeGuests(
+  delta
+){
 
   const input =
     document.getElementById(
       "guestCount"
     );
 
+
   input.value =
     Math.max(
       1,
       Math.min(
         12,
-        Number(input.value) + delta
+        Number(input.value)
+        +
+        delta
       )
     );
 
 }
 
 
-function submitRSVP(coming){
+function submitRSVP(
+  coming
+){
 
   const name =
     document
-      .getElementById("guestName")
+      .getElementById(
+        "guestName"
+      )
       .value
       .trim();
+
 
   const count =
     document.getElementById(
       "guestCount"
     ).value;
+
 
   const success =
     document.getElementById(
@@ -3094,7 +3165,9 @@ function submitRSVP(coming){
 
   if(!name){
 
-    alert("נא להזין שם מלא");
+    alert(
+      "נא להזין שם מלא"
+    );
 
     return;
 
@@ -3131,9 +3204,7 @@ function submitRSVP(coming){
    BIT
 ===================================================== */
 
-function openBit(event){
-
-  event.preventDefault();
+function openBit(){
 
   document.getElementById(
     "bitModal"
@@ -3148,33 +3219,43 @@ function copyBitNumber(){
   const number =
     "0584000184";
 
-  navigator.clipboard
-    .writeText(number)
-    .then(function(){
 
-      const button =
-        document.getElementById(
-          "copyBitButton"
-        );
+  const button =
+    document.getElementById(
+      "copyBitButton"
+    );
 
-      button.textContent =
-        "✓ המספר הועתק";
 
-      setTimeout(function(){
+  if(
+    navigator.clipboard &&
+    window.isSecureContext
+  ){
+
+    navigator.clipboard
+      .writeText(
+        number
+      )
+      .then(function(){
 
         button.textContent =
-          "העתקת מספר";
+          "✓ המספר הועתק";
 
-      },2000);
+        setTimeout(function(){
 
-    })
-    .catch(function(){
+          button.textContent =
+            "העתקת מספר";
 
-      alert(
-        "המספר שלך הוא: 0584000184"
-      );
+        },2000);
 
-    });
+      });
+
+  }else{
+
+    alert(
+      "מספר ה-Bit: 0584000184"
+    );
+
+  }
 
 }
 
@@ -3209,9 +3290,7 @@ function tryOpenBit(){
    אשראי
 ===================================================== */
 
-function openCredit(event){
-
-  event.preventDefault();
+function openCredit(){
 
   document.getElementById(
     "creditModal"
@@ -3221,7 +3300,9 @@ function openCredit(event){
 }
 
 
-function openCreditLink(event){
+function openCreditLink(
+  event
+){
 
   if(!CREDIT_PAYMENT_URL){
 
@@ -3235,6 +3316,10 @@ function openCreditLink(event){
 
   }
 
+
+  window.location.href =
+    CREDIT_PAYMENT_URL;
+
 }
 
 
@@ -3242,7 +3327,9 @@ function openCreditLink(event){
    סגירת חלונות
 ===================================================== */
 
-function closeModal(id){
+function closeModal(
+  id
+){
 
   document.getElementById(
     id
@@ -3257,26 +3344,34 @@ window.addEventListener(
   function(event){
 
     const modals = [
+
       "calendarModal",
       "rsvpModal",
       "bitModal",
       "creditModal"
+
     ];
 
 
-    modals.forEach(function(id){
+    modals.forEach(
+      function(id){
 
-      const modal =
-        document.getElementById(id);
+        const modal =
+          document.getElementById(
+            id
+          );
 
 
-      if(event.target === modal){
+        if(
+          event.target === modal
+        ){
 
-        closeModal(id);
+          closeModal(id);
+
+        }
 
       }
-
-    });
+    );
 
   }
 );
@@ -3289,50 +3384,91 @@ window.addEventListener(
 function updateCountdown(){
 
   const difference =
-    new Date(WEDDING_DATE).getTime()
+    new Date(
+      WEDDING_DATE
+    ).getTime()
     -
     Date.now();
 
 
-  if(difference <= 0){
+  if(
+    difference <= 0
+  ){
 
-    document.getElementById("days").textContent = "0";
-    document.getElementById("hours").textContent = "0";
-    document.getElementById("minutes").textContent = "0";
-    document.getElementById("seconds").textContent = "0";
+    document.getElementById(
+      "days"
+    ).textContent =
+      "0";
+
+    document.getElementById(
+      "hours"
+    ).textContent =
+      "0";
+
+    document.getElementById(
+      "minutes"
+    ).textContent =
+      "0";
+
+    document.getElementById(
+      "seconds"
+    ).textContent =
+      "0";
 
     return;
 
   }
 
 
-  document.getElementById("days").textContent =
+  document.getElementById(
+    "days"
+  ).textContent =
     Math.floor(
-      difference / 86400000
+      difference /
+      86400000
     );
 
 
-  document.getElementById("hours").textContent =
+  document.getElementById(
+    "hours"
+  ).textContent =
     Math.floor(
-      (difference % 86400000) / 3600000
+      (
+        difference %
+        86400000
+      ) /
+      3600000
     );
 
 
-  document.getElementById("minutes").textContent =
+  document.getElementById(
+    "minutes"
+  ).textContent =
     Math.floor(
-      (difference % 3600000) / 60000
+      (
+        difference %
+        3600000
+      ) /
+      60000
     );
 
 
-  document.getElementById("seconds").textContent =
+  document.getElementById(
+    "seconds"
+  ).textContent =
     Math.floor(
-      (difference % 60000) / 1000
+      (
+        difference %
+        60000
+      ) /
+      1000
     );
 
 }
 
 
 updateCountdown();
+
 
 setInterval(
   updateCountdown,
