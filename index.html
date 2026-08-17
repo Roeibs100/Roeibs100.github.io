@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>רועי & שיראל | The Wedding Day</title>
+<title>רועי & שיראל | The Wedding</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,268 +13,218 @@
 
 <style>
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* =====================================================
+   בסיס
+===================================================== */
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
-:root {
-  --cream: #faf7ef;
-  --gold: #ad8747;
-  --green: #456848;
-  --green2: #64845f;
-  --dark: #302c27;
-  --muted: #8d8376;
+:root{
+  --cream:#faf7ef;
+  --paper:#fffdf8;
+  --gold:#ad8747;
+  --gold-light:#d8bd8a;
+  --dark:#302c27;
+  --muted:#8d8376;
+  --green:#64815d;
 }
 
-html {
-  scroll-behavior: smooth;
+html{
+  scroll-behavior:smooth;
 }
 
-body {
-  min-height: 100vh;
-  background: #ded7cc;
-  color: var(--dark);
-  font-family: "Heebo", sans-serif;
-  overflow-x: hidden;
+body{
+  min-height:100vh;
+  background:#ded7cc;
+  color:var(--dark);
+  font-family:"Heebo",sans-serif;
+  overflow-x:hidden;
+}
+
+button,
+a{
+  font:inherit;
 }
 
 
 /* =====================================================
-   מסך כניסה
+   מסך פתיחה
 ===================================================== */
 
-#opening {
+#opening{
+  position:fixed;
+  inset:0;
 
-  position: fixed;
-  inset: 0;
+  z-index:99999;
 
-  z-index: 99999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  min-height: 100vh;
-
-  overflow: hidden;
+  overflow:hidden;
 
   background:
     radial-gradient(
-      circle at 50% 45%,
+      circle at center,
       #fffefa 0%,
       #faf7f0 58%,
       #ebe3d7 100%
     );
 
   transition:
-    opacity 1.1s ease,
-    transform 1.1s ease,
-    visibility 1.1s ease;
+    opacity 1s ease,
+    transform 1s ease,
+    visibility 1s ease;
 }
 
-
-#opening.opened {
-
-  opacity: 0;
-
-  visibility: hidden;
-
-  transform: scale(1.04);
-
-  pointer-events: none;
+#opening.opened{
+  opacity:0;
+  visibility:hidden;
+  transform:scale(1.04);
+  pointer-events:none;
 }
 
-
-/* מסגרת */
-
-.opening-border {
-
-  position: absolute;
-
-  inset: 13px;
+.opening-border{
+  position:absolute;
+  inset:13px;
 
   border:
     1px solid
-    rgba(150,132,101,.34);
+    rgba(150,132,101,.35);
 }
 
+.opening-border::after{
+  content:"";
 
-.opening-border:after {
-
-  content: "";
-
-  position: absolute;
-
-  inset: 7px;
+  position:absolute;
+  inset:7px;
 
   border:
     1px solid
-    rgba(150,132,101,.11);
+    rgba(150,132,101,.12);
 }
 
+.opening-decoration{
+  position:absolute;
 
-/* קישוטים */
-
-.opening-decoration {
-
-  position: absolute;
-
-  width: 330px;
-  height: 330px;
+  width:330px;
+  height:330px;
 
   border:
     1px solid
-    rgba(178,138,75,.11);
+    rgba(178,138,75,.12);
 
-  border-radius: 50%;
+  border-radius:50%;
 }
 
-
-.opening-decoration.top {
-
-  top: -220px;
-
-  right: -160px;
+.opening-decoration.top{
+  top:-220px;
+  right:-160px;
 }
 
-
-.opening-decoration.bottom {
-
-  bottom: -220px;
-
-  left: -160px;
+.opening-decoration.bottom{
+  bottom:-220px;
+  left:-160px;
 }
 
+.leaf-decoration{
+  position:absolute;
 
-/* עלים */
-
-.leaf-decoration {
-
-  position: absolute;
-
-  font-family:
+  font:
+    210px/1
     "Cormorant Garamond",
     serif;
-
-  font-size: 210px;
 
   color:
-    rgba(126,136,113,.07);
-
-  pointer-events: none;
+    rgba(126,136,113,.08);
 }
 
-
-.leaf-decoration.left {
-
-  top: -65px;
-
-  left: -90px;
-
-  transform: rotate(-35deg);
+.leaf-decoration.left{
+  top:-65px;
+  left:-90px;
+  transform:rotate(-35deg);
 }
 
-
-.leaf-decoration.right {
-
-  bottom: -70px;
-
-  right: -90px;
-
-  transform: rotate(145deg);
+.leaf-decoration.right{
+  bottom:-70px;
+  right:-90px;
+  transform:rotate(145deg);
 }
 
+.opening-content{
+  position:relative;
+  z-index:10;
 
-/* תוכן */
+  width:100%;
+  max-width:500px;
 
-.opening-content {
+  min-height:100vh;
 
-  position: relative;
+  padding:30px;
 
-  z-index: 2;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
 
-  width: 100%;
-
-  max-width: 500px;
-
-  min-height: 100vh;
-
-  padding: 30px;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  justify-content: center;
-
-  text-align: center;
+  text-align:center;
 }
 
-
-.opening-title {
-
-  font-family:
+.opening-title{
+  font:
+    17px
     "Cormorant Garamond",
     serif;
 
-  font-size: 17px;
+  letter-spacing:6px;
 
-  letter-spacing: 6px;
+  color:#756b60;
 
-  color: #756b60;
+  margin-bottom:23px;
 
-  margin-bottom: 23px;
+  animation:rise .8s .1s both;
 }
 
-
-.opening-names {
-
-  font-family:
+.opening-names{
+  font:
+    400 52px/1
     "Cormorant Garamond",
     serif;
 
-  font-size: 52px;
+  color:#36312b;
 
-  font-weight: 400;
+  margin-bottom:14px;
 
-  line-height: 1;
-
-  color: #36312b;
-
-  margin-bottom: 14px;
+  animation:rise .8s .25s both;
 }
 
+.opening-names span{
+  color:var(--gold);
 
-.opening-names span {
+  font-size:44px;
 
-  color: var(--gold);
+  font-style:italic;
 
-  font-size: 44px;
-
-  font-style: italic;
-
-  margin: 0 8px;
+  margin:0 8px;
 }
 
-
-.opening-subtitle {
-
-  font-family:
+.opening-subtitle{
+  font:
+    17px
     "Cormorant Garamond",
     serif;
 
-  font-size: 17px;
+  letter-spacing:5px;
 
-  letter-spacing: 5px;
+  color:#92877a;
 
-  color: #92877a;
+  margin-bottom:38px;
 
-  margin-bottom: 38px;
+  animation:rise .8s .4s both;
 }
 
 
@@ -282,19 +232,17 @@ body {
    חותמת SAVE THE DATE
 ===================================================== */
 
-.wax-seal {
+.wax-seal{
+  position:relative;
 
-  position: relative;
+  width:190px;
+  height:190px;
 
-  width: 190px;
-  height: 190px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  cursor: pointer;
+  cursor:pointer;
 
   border-radius:
     47% 53% 49% 51% /
@@ -318,17 +266,16 @@ body {
     inset 0 -8px 15px
     rgba(120,104,80,.13);
 
-  transition: .35s;
+  transition:.35s;
+
+  animation:sealIn 1s .55s both;
 }
 
+.wax-seal::before{
+  content:"";
 
-.wax-seal:before {
-
-  content: "";
-
-  position: absolute;
-
-  inset: -8px;
+  position:absolute;
+  inset:-8px;
 
   border-radius:
     48% 52% 47% 53% /
@@ -338,152 +285,158 @@ body {
     7px solid
     rgba(226,219,207,.8);
 
-  transform: rotate(-5deg);
+  transform:rotate(-5deg);
 }
 
+.wax-seal::after{
+  content:"";
 
-.wax-seal:after {
+  position:absolute;
+  inset:5px;
 
-  content: "";
-
-  position: absolute;
-
-  inset: 5px;
-
-  border-radius: 50%;
+  border-radius:50%;
 
   border:
     1px solid
     rgba(140,124,102,.25);
 }
 
-
-.wax-seal:hover {
-
+.wax-seal:hover{
   transform:
     scale(1.06)
     rotate(-1deg);
 }
 
+.wax-seal:active{
+  transform:scale(.96);
+}
 
-.seal-inner {
+.seal-inner{
+  position:absolute;
+  inset:18px;
 
-  position: absolute;
-
-  inset: 18px;
-
-  border-radius: 50%;
+  border-radius:50%;
 
   border:
     1px solid
     rgba(132,117,97,.28);
 
-  display: flex;
+  box-shadow:
+    inset 0 0 0 1px
+    rgba(255,255,255,.6);
 
-  flex-direction: column;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
 
-  align-items: center;
-
-  justify-content: center;
-
-  color: #817565;
+  color:#817565;
 
   text-shadow:
     0 1px 1px
     rgba(255,255,255,.95);
 }
 
-
 .seal-save,
-.seal-date {
-
-  font-family:
+.seal-date{
+  font:
+    500 27px/1
     "Cormorant Garamond",
     serif;
 
-  font-size: 27px;
-
-  font-weight: 500;
-
-  letter-spacing: 4px;
-
-  line-height: 1;
+  letter-spacing:4px;
 }
 
-
-.seal-the {
-
-  font-family:
+.seal-the{
+  font:
+    italic 18px
     "Cormorant Garamond",
     serif;
 
-  font-size: 18px;
+  color:#958a7b;
 
-  font-style: italic;
-
-  color: #958a7b;
-
-  margin: 5px 0;
+  margin:5px 0;
 }
 
-
-.seal-line {
-
-  width: 45px;
-
-  height: 1px;
+.seal-line{
+  width:45px;
+  height:1px;
 
   background:
     rgba(132,117,97,.35);
 
-  margin-top: 9px;
+  margin-top:9px;
 }
 
-
-.opening-wedding {
-
-  font-family:
+.opening-wedding{
+  font:
+    italic 18px
     "Cormorant Garamond",
     serif;
 
-  font-size: 18px;
+  letter-spacing:4px;
 
-  font-style: italic;
+  color:#817568;
 
-  letter-spacing: 4px;
+  margin-top:35px;
 
-  color: #817568;
-
-  margin-top: 35px;
+  animation:rise .8s .8s both;
 }
 
+.opening-hint{
+  font-size:13px;
+  font-weight:300;
 
-.opening-hint {
+  color:#9a9083;
 
-  font-size: 13px;
-
-  font-weight: 300;
-
-  color: #9a9083;
-
-  margin-top: 30px;
+  margin-top:30px;
 
   animation:
-    pulse 2.5s infinite;
+    rise .8s 1s both,
+    pulse 2.5s 2s infinite;
 }
 
 
-@keyframes pulse {
+/* =====================================================
+   אנימציות
+===================================================== */
 
-  0%,
-  100% {
-    opacity: .45;
+@keyframes rise{
+  from{
+    opacity:0;
+    transform:translateY(14px);
   }
 
-  50% {
-    opacity: 1;
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+@keyframes sealIn{
+  from{
+    opacity:0;
+    transform:
+      scale(.72)
+      rotate(-8deg);
   }
 
+  to{
+    opacity:1;
+    transform:
+      scale(1)
+      rotate(0);
+  }
+}
+
+@keyframes pulse{
+  0%,100%{
+    opacity:.45;
+  }
+
+  50%{
+    opacity:1;
+  }
 }
 
 
@@ -491,31 +444,28 @@ body {
    ההזמנה
 ===================================================== */
 
-#invitation {
-  display: none;
+#invitation{
+  display:none;
 }
 
+.page{
+  position:relative;
 
-.page {
+  width:100%;
+  max-width:560px;
 
-  position: relative;
+  min-height:100vh;
 
-  width: 100%;
+  margin:auto;
 
-  max-width: 560px;
-
-  min-height: 100vh;
-
-  margin: auto;
-
-  overflow: hidden;
+  overflow:hidden;
 
   background:
     radial-gradient(
       ellipse at center,
-      rgba(255,255,255,.94),
+      rgba(255,255,255,.96),
       rgba(247,242,233,.98) 58%,
-      rgba(235,225,210,1)
+      rgba(235,225,210,.99)
     );
 
   box-shadow:
@@ -523,145 +473,117 @@ body {
     rgba(54,45,34,.15);
 }
 
+.frame{
+  position:absolute;
 
-.frame {
-
-  position: absolute;
-
-  inset: 14px;
+  inset:14px;
 
   border:
     1px solid
     rgba(178,138,75,.38);
 
-  pointer-events: none;
+  pointer-events:none;
+
+  z-index:2;
 }
 
+.frame::after{
+  content:"";
 
-.frame:after {
-
-  content: "";
-
-  position: absolute;
-
-  inset: 7px;
+  position:absolute;
+  inset:7px;
 
   border:
     1px solid
     rgba(178,138,75,.13);
 }
 
+.content{
+  position:relative;
+  z-index:5;
 
-.content {
+  min-height:100vh;
 
-  position: relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 
-  z-index: 2;
+  padding:55px 18px 48px;
 
-  min-height: 100vh;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  padding: 58px 20px 48px;
-
-  text-align: center;
+  text-align:center;
 }
 
 
-.monogram {
+/* =====================================================
+   כותרת
+===================================================== */
 
-  display: flex;
+.monogram{
+  display:flex;
+  align-items:center;
+  gap:14px;
 
-  align-items: center;
-
-  gap: 14px;
-
-  font-family:
+  font:
+    39px
     "Cormorant Garamond",
     serif;
 
-  font-size: 39px;
+  color:var(--gold);
 
-  color: var(--gold);
+  letter-spacing:5px;
 
-  letter-spacing: 5px;
-
-  margin-bottom: 4px;
+  margin-bottom:4px;
 }
 
+.monogram-line{
+  width:1px;
+  height:39px;
 
-.monogram-line {
-
-  width: 1px;
-
-  height: 39px;
-
-  background: var(--gold);
+  background:var(--gold);
 }
 
+.heart{
+  font-size:12px;
 
-.heart {
+  color:var(--gold);
 
-  font-size: 13px;
-
-  color: var(--gold);
-
-  margin-bottom: 21px;
+  margin-bottom:20px;
 }
 
-
-.wedding-title {
-
-  font-family:
+.wedding-title{
+  font:
+    16px
     "Cormorant Garamond",
     serif;
 
-  font-size: 16px;
+  letter-spacing:6px;
 
-  letter-spacing: 6px;
+  color:#776d61;
 
-  color: #776d61;
-
-  margin-bottom: 12px;
+  margin-bottom:12px;
 }
 
+.names{
+  font:
+    300
+    clamp(45px,13vw,67px)
+    /1.05
+    Heebo,sans-serif;
 
-.names {
+  white-space:nowrap;
 
-  font-family:
-    "Heebo",
-    sans-serif;
-
-  font-size:
-    clamp(45px,13vw,67px);
-
-  font-weight: 300;
-
-  line-height: 1.05;
-
-  white-space: nowrap;
-
-  margin-bottom: 17px;
+  margin-bottom:17px;
 }
 
-
-.names .and {
-
-  font-family:
+.names .and{
+  font:
+    italic 53px
     "Cormorant Garamond",
     serif;
 
-  color: var(--gold);
+  color:var(--gold);
 
-  font-size: 53px;
-
-  font-style: italic;
-
-  margin: 0 7px;
+  margin:0 7px;
 }
 
 
@@ -669,25 +591,20 @@ body {
    קישוט
 ===================================================== */
 
-.ornament {
+.ornament{
+  display:flex;
+  align-items:center;
 
-  display: flex;
+  width:100%;
+  max-width:390px;
 
-  align-items: center;
-
-  width: 100%;
-
-  max-width: 390px;
-
-  margin: 4px auto 25px;
+  margin:4px auto 25px;
 }
 
+.ornament-line{
+  flex:1;
 
-.ornament-line {
-
-  flex: 1;
-
-  height: 1px;
+  height:1px;
 
   background:
     linear-gradient(
@@ -697,9 +614,7 @@ body {
     );
 }
 
-
-.ornament-line.right {
-
+.ornament-line.right{
   background:
     linear-gradient(
       to left,
@@ -708,94 +623,223 @@ body {
     );
 }
 
+.ornament-center{
+  color:var(--gold);
 
-.ornament-center {
+  margin:0 12px;
 
-  color: var(--gold);
+  transform:rotate(45deg);
 
-  margin: 0 12px;
-
-  transform: rotate(45deg);
-
-  font-size: 13px;
-}
-
-
-.venue-small {
-
-  font-size: 16px;
-
-  font-weight: 300;
-
-  color: #756c61;
-}
-
-
-.venue {
-
-  font-family:
-    "Cormorant Garamond",
-    serif;
-
-  font-size: 66px;
-
-  line-height: .95;
-
-  letter-spacing: 8px;
-
-  margin: 2px 0 5px;
-}
-
-
-.venue-sub {
-
-  font-family:
-    "Cormorant Garamond",
-    serif;
-
-  font-size: 17px;
-
-  letter-spacing: 5px;
-
-  color: var(--gold);
-
-  margin-bottom: 30px;
+  font-size:12px;
 }
 
 
 /* =====================================================
-   כפתורים
+   מקום ותאריך
 ===================================================== */
 
-.buttons {
+.venue-small{
+  font-size:16px;
+  color:#756c61;
+}
 
-  width: 100%;
+.venue{
+  font:
+    66px/.95
+    "Cormorant Garamond",
+    serif;
 
-  max-width: 430px;
+  letter-spacing:8px;
 
-  display: flex;
+  margin:2px 0 5px;
+}
 
-  flex-direction: column;
+.venue-sub{
+  font:
+    17px
+    "Cormorant Garamond",
+    serif;
 
-  gap: 11px;
+  letter-spacing:5px;
+
+  color:var(--gold);
+
+  margin-bottom:18px;
+}
+
+.event-date{
+  font:
+    28px
+    "Cormorant Garamond",
+    serif;
+
+  letter-spacing:4px;
+
+  color:#514940;
+
+  margin-bottom:3px;
+}
+
+.event-time{
+  font-size:13px;
+
+  letter-spacing:2px;
+
+  color:#958a7c;
+
+  margin-bottom:22px;
 }
 
 
-.button {
+/* =====================================================
+   ספירה לאחור
+===================================================== */
 
-  position: relative;
+.countdown{
+  width:100%;
+  max-width:450px;
 
-  width: 100%;
+  margin:0 0 26px;
 
-  min-height: 76px;
+  padding:22px 10px 20px;
 
-  display: flex;
+  position:relative;
 
-  align-items: center;
+  border-top:
+    1px solid
+    rgba(173,135,71,.35);
 
-  text-decoration: none;
+  border-bottom:
+    1px solid
+    rgba(173,135,71,.35);
+}
 
-  color: var(--dark);
+.countdown::before{
+  content:"";
+
+  position:absolute;
+
+  top:-4px;
+  left:50%;
+
+  width:7px;
+  height:7px;
+
+  background:var(--gold);
+
+  transform:
+    translateX(-50%)
+    rotate(45deg);
+}
+
+.countdown::after{
+  content:"";
+
+  position:absolute;
+
+  bottom:-4px;
+  left:50%;
+
+  width:7px;
+  height:7px;
+
+  background:var(--gold);
+
+  transform:
+    translateX(-50%)
+    rotate(45deg);
+}
+
+.countdown-label{
+  font:
+    500 16px
+    "Cormorant Garamond",
+    serif;
+
+  letter-spacing:4px;
+
+  color:#74695d;
+
+  margin-bottom:4px;
+}
+
+.countdown-subtitle{
+  font:
+    italic 15px
+    "Cormorant Garamond",
+    serif;
+
+  color:#a08d72;
+
+  margin-bottom:18px;
+}
+
+.countdown-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  direction:ltr;
+
+  gap:7px;
+}
+
+.time-box{
+  padding:9px 3px 10px;
+
+  border:
+    1px solid
+    rgba(173,135,71,.22);
+
+  background:
+    rgba(255,255,255,.48);
+
+  border-radius:9px;
+}
+
+.time-number{
+  font:
+    500 42px/1
+    "Cormorant Garamond",
+    serif;
+
+  color:#403a33;
+
+  min-width:50px;
+}
+
+.time-label{
+  margin-top:7px;
+
+  font:
+    500 9px
+    "Heebo",sans-serif;
+
+  letter-spacing:2px;
+
+  color:#9a8c7b;
+}
+
+.time-box.seconds .time-number{
+  color:var(--gold);
+}
+
+
+/* =====================================================
+   כפתור יומן
+===================================================== */
+
+.calendar-main{
+  width:100%;
+  max-width:430px;
+
+  min-height:76px;
+
+  display:flex;
+  align-items:center;
+
+  color:var(--dark);
 
   background:
     rgba(255,255,255,.52);
@@ -804,25 +848,19 @@ body {
     1px solid
     rgba(143,124,95,.28);
 
-  border-radius: 14px;
+  border-radius:14px;
 
-  padding: 9px 14px;
+  padding:9px 14px;
 
-  font-family:
-    "Heebo",
-    sans-serif;
+  cursor:pointer;
 
-  cursor: pointer;
+  transition:.25s;
 
-  overflow: hidden;
-
-  transition: .25s;
+  margin-bottom:11px;
 }
 
-
-.button:hover {
-
-  transform: translateY(-2px);
+.calendar-main:hover{
+  transform:translateY(-2px);
 
   background:
     rgba(255,255,255,.86);
@@ -832,92 +870,262 @@ body {
 
   box-shadow:
     0 8px 24px
-    rgba(80,65,47,.08);
+    rgba(80,65,45,.08);
 }
 
 
-.button:active {
-  transform: scale(.985);
+/* =====================================================
+   אייקון יומן CSS
+===================================================== */
+
+.calendar-icon{
+  position:relative;
+
+  width:48px;
+  height:48px;
+
+  flex-shrink:0;
+
+  margin-left:14px;
+
+  border-left:
+    1px solid
+    rgba(174,135,80,.22);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 
-.action-icon {
+/* גוף היומן */
 
-  width: 48px;
+.calendar-icon::before{
+  content:"";
 
-  height: 48px;
+  position:absolute;
 
-  flex-shrink: 0;
+  width:27px;
+  height:25px;
 
-  margin-left: 14px;
+  border:
+    1.5px solid
+    var(--gold);
 
-  display: flex;
+  border-radius:5px;
 
-  align-items: center;
-  justify-content: center;
+  top:11px;
+  left:9px;
 
-  color: var(--gold);
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 7px,
+      rgba(173,135,71,.08) 7px,
+      rgba(173,135,71,.08) 100%
+    );
+}
+
+
+/* פס עליון */
+
+.calendar-icon::after{
+  content:"";
+
+  position:absolute;
+
+  width:27px;
+  height:7px;
+
+  top:11px;
+  left:9px;
+
+  border-bottom:
+    1.5px solid
+    var(--gold);
+
+  border-radius:
+    4px 4px 0 0;
+
+  background:
+    rgba(173,135,71,.08);
+}
+
+
+/* נקודות פנימיות */
+
+.calendar-dots{
+  position:absolute;
+
+  width:4px;
+  height:4px;
+
+  border-radius:50%;
+
+  background:var(--gold);
+
+  top:26px;
+  left:16px;
+
+  box-shadow:
+    8px 0 0 var(--gold),
+    16px 0 0 var(--gold),
+    0 8px 0 var(--gold),
+    8px 8px 0 var(--gold),
+    16px 8px 0 var(--gold);
+}
+
+.calendar-main-text{
+  flex:1;
+
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+
+  text-align:right;
+}
+
+.calendar-main-title{
+  font-size:17px;
+}
+
+.calendar-main-subtitle{
+  font-size:12px;
+
+  color:#94897c;
+
+  font-weight:300;
+}
+
+.calendar-arrow{
+  font:
+    24px
+    Arial;
+
+  color:#aa9576;
+
+  margin-right:8px;
+}
+
+
+/* =====================================================
+   כפתורים
+===================================================== */
+
+.buttons{
+  width:100%;
+  max-width:430px;
+
+  display:flex;
+  flex-direction:column;
+
+  gap:11px;
+}
+
+.button{
+  position:relative;
+
+  width:100%;
+
+  min-height:76px;
+
+  display:flex;
+  align-items:center;
+
+  text-decoration:none;
+
+  color:var(--dark);
+
+  background:
+    rgba(255,255,255,.52);
+
+  border:
+    1px solid
+    rgba(143,124,95,.28);
+
+  border-radius:14px;
+
+  padding:9px 14px;
+
+  cursor:pointer;
+
+  overflow:hidden;
+
+  transition:.25s;
+}
+
+.button:hover{
+  transform:translateY(-2px);
+
+  background:
+    rgba(255,255,255,.86);
+
+  border-color:
+    rgba(174,135,80,.55);
+
+  box-shadow:
+    0 8px 24px
+    rgba(80,65,45,.08);
+}
+
+.action-icon{
+  width:48px;
+  height:48px;
+
+  flex-shrink:0;
+
+  margin-left:14px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  color:var(--gold);
 
   border-left:
     1px solid
     rgba(174,135,80,.22);
 }
 
+.action-text{
+  flex:1;
 
-.action-text {
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
 
-  flex: 1;
+  text-align:right;
+}
 
-  display: flex;
+.action-title{
+  font-size:17px;
+}
 
-  flex-direction: column;
+.action-subtitle{
+  font-size:12px;
 
-  align-items: flex-start;
+  font-weight:300;
 
-  text-align: right;
+  color:#94897c;
+}
+
+.action-arrow{
+  font:
+    24px
+    Arial;
+
+  color:#aa9576;
+
+  margin-right:8px;
 }
 
 
-.action-title {
+/* =====================================================
+   אישור הגעה
+===================================================== */
 
-  font-size: 17px;
-
-  font-weight: 400;
-
-  color: #3c3731;
-}
-
-
-.action-subtitle {
-
-  font-size: 12px;
-
-  font-weight: 300;
-
-  color: #94897c;
-
-  margin-top: 1px;
-}
-
-
-.action-arrow {
-
-  font-family:
-    Arial,
-    sans-serif;
-
-  font-size: 24px;
-
-  color: #aa9576;
-
-  margin-right: 8px;
-}
-
-
-/* אישור הגעה */
-
-.rsvp-card {
-
+.rsvp-card{
   background:
     linear-gradient(
       135deg,
@@ -930,139 +1138,118 @@ body {
 
   box-shadow:
     0 8px 22px
-    rgba(49,43,36,.14);
+    rgba(49,43,36,.12);
 }
 
-
-.rsvp-card .action-icon {
-
-  color: #d5b77e;
+.rsvp-card .action-icon{
+  color:#d5b77e;
 
   border-left-color:
     rgba(213,183,126,.28);
 }
 
+.rsvp-card .action-title{
+  color:white;
+}
 
-.rsvp-card .action-title {
-  color: white;
+.rsvp-card .action-subtitle{
+  color:#d0c7bb;
+}
+
+.rsvp-card .action-arrow{
+  color:#d5b77e;
+}
+
+.heart-outline{
+  font-size:30px;
 }
 
 
-.rsvp-card .action-subtitle {
-  color: #d0c7bb;
-}
+/* =====================================================
+   מיקום CSS
+===================================================== */
 
+.location-icon{
+  position:relative;
 
-.rsvp-card .action-arrow {
-  color: #d5b77e;
-}
-
-
-.heart-outline {
-
-  font-size: 31px;
-
-  font-family:
-    Arial,
-    sans-serif;
-}
-
-
-/* מיקום */
-
-.location-icon {
-
-  position: relative;
-
-  width: 20px;
-  height: 26px;
+  width:20px;
+  height:26px;
 
   border:
-    1.5px solid
-    currentColor;
+    1.5px solid currentColor;
 
   border-radius:
     50% 50% 50% 0;
 
-  transform: rotate(-45deg);
+  transform:rotate(-45deg);
 }
 
+.location-icon::after{
+  content:"";
 
-.location-icon:after {
+  position:absolute;
 
-  content: "";
-
-  position: absolute;
-
-  width: 5px;
-  height: 5px;
+  width:5px;
+  height:5px;
 
   border:
-    1px solid
-    currentColor;
+    1px solid currentColor;
 
-  border-radius: 50%;
+  border-radius:50%;
 
-  top: 7px;
-  left: 6px;
+  top:7px;
+  left:6px;
 }
 
 
-/* BIT */
+/* =====================================================
+   BIT
+===================================================== */
 
-.bit-card {
-
+.bit-card{
   border-color:
-    rgba(111,133,101,.38);
+    rgba(111,133,97,.40);
 
   background:
     linear-gradient(
       135deg,
-      rgba(250,253,247,.9),
+      rgba(250,253,247,.90),
       rgba(242,247,237,.75)
     );
 }
 
-
-.bit-card .action-icon {
-
-  color: var(--green2);
+.bit-card .action-icon{
+  color:#638158;
 
   border-left-color:
-    rgba(111,133,101,.25);
+    rgba(111,133,97,.25);
+}
+
+.bit-logo{
+  font:
+    700 21px
+    Arial;
+
+  color:#638158;
+
+  letter-spacing:-1.5px;
 }
 
 
-.bit-logo {
+/* =====================================================
+   כרטיס אשראי CSS
+===================================================== */
 
-  font-family:
-    Arial,
-    sans-serif;
+.credit-icon{
+  position:relative;
 
-  font-size: 21px;
-
-  font-weight: 700;
-
-  letter-spacing: -1.5px;
-
-  color: #638158;
-}
-
-
-/* אשראי */
-
-.credit-icon {
-
-  position: relative;
-
-  width: 33px;
-  height: 22px;
+  width:34px;
+  height:23px;
 
   border:
-    1px solid
-    #71685d;
+    1px solid #71685d;
 
-  border-radius: 4px;
+  border-radius:4px;
 
   background:
     linear-gradient(
@@ -1072,37 +1259,35 @@ body {
     );
 }
 
+.credit-icon::before{
+  content:"";
 
-.credit-icon:before {
+  position:absolute;
 
-  content: "";
+  top:5px;
+  left:0;
 
-  position: absolute;
+  width:100%;
+  height:3px;
 
-  top: 5px;
-  left: 0;
-
-  width: 100%;
-  height: 3px;
-
-  background: #c5ad84;
+  background:#c5ad84;
 }
 
+.credit-icon::after{
+  content:"";
 
-.credit-icon:after {
+  position:absolute;
 
-  content: "••••";
+  bottom:2px;
+  right:4px;
 
-  position: absolute;
+  width:17px;
+  height:3px;
 
-  bottom: 1px;
-  right: 4px;
+  border-radius:2px;
 
-  color: #eee6d9;
-
-  font-size: 6px;
-
-  letter-spacing: 1px;
+  background:
+    rgba(255,255,255,.6);
 }
 
 
@@ -1110,78 +1295,60 @@ body {
    FOOTER
 ===================================================== */
 
-.footer {
+.footer{
+  width:100%;
 
-  width: 100%;
+  margin-top:40px;
 
-  margin-top: 40px;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
 
+.footer-ornament{
+  width:170px;
 
-.footer-ornament {
+  display:flex;
+  align-items:center;
 
-  width: 170px;
-
-  display: flex;
-
-  align-items: center;
-
-  margin-bottom: 15px;
+  margin-bottom:15px;
 }
 
+.footer-line{
+  flex:1;
 
-.footer-line {
-
-  flex: 1;
-
-  height: 1px;
+  height:1px;
 
   background:
     rgba(178,138,75,.4);
 }
 
+.footer-heart{
+  color:var(--gold);
 
-.footer-heart {
+  margin:0 9px;
 
-  color: var(--gold);
-
-  margin: 0 9px;
-
-  font-size: 12px;
+  font-size:11px;
 }
 
-
-.with-love {
-
-  font-family:
+.with-love{
+  font:
+    italic 25px
     "Cormorant Garamond",
     serif;
 
-  font-size: 25px;
+  color:var(--gold);
 
-  font-style: italic;
-
-  color: var(--gold);
-
-  margin-bottom: 3px;
+  margin-bottom:3px;
 }
 
-
-.footer-names {
-
-  font-family:
+.footer-names{
+  font:
+    16px
     "Cormorant Garamond",
     serif;
 
-  font-size: 16px;
-
-  letter-spacing: 5px;
+  letter-spacing:5px;
 }
 
 
@@ -1189,40 +1356,34 @@ body {
    חלונות
 ===================================================== */
 
-.modal {
+.modal{
+  display:none;
 
-  display: none;
+  position:fixed;
+  inset:0;
 
-  position: fixed;
-
-  inset: 0;
-
-  z-index: 100000;
+  z-index:100000;
 
   background:
-    rgba(35,31,27,.64);
+    rgba(35,31,27,.67);
 
-  align-items: center;
+  align-items:center;
+  justify-content:center;
 
-  justify-content: center;
+  padding:18px;
 
-  padding: 18px;
-
-  backdrop-filter: blur(7px);
+  backdrop-filter:blur(7px);
 }
 
+.modal-content{
+  position:relative;
 
-.modal-content {
+  width:100%;
+  max-width:410px;
 
-  position: relative;
+  padding:38px 24px 28px;
 
-  width: 100%;
-
-  max-width: 410px;
-
-  padding: 38px 24px 28px;
-
-  text-align: center;
+  text-align:center;
 
   background:
     radial-gradient(
@@ -1235,338 +1396,492 @@ body {
     1px solid
     var(--gold);
 
-  border-radius: 18px;
+  border-radius:18px;
 
   box-shadow:
     0 20px 60px
     rgba(0,0,0,.25);
+
+  animation:modalIn .35s ease;
 }
 
+@keyframes modalIn{
+  from{
+    opacity:0;
+    transform:
+      translateY(12px)
+      scale(.98);
+  }
 
-.close {
-
-  position: absolute;
-
-  left: 17px;
-
-  top: 8px;
-
-  font-size: 27px;
-
-  color: #81786d;
-
-  cursor: pointer;
+  to{
+    opacity:1;
+    transform:none;
+  }
 }
 
+.close{
+  position:absolute;
 
-/* =====================================================
-   אישור הגעה
-===================================================== */
+  left:17px;
+  top:8px;
 
-.modal-content h2 {
+  font-size:27px;
 
-  font-family:
+  color:#81786d;
+
+  cursor:pointer;
+}
+
+.modal-content h2{
+  font:
+    400 35px
     "Cormorant Garamond",
     serif;
 
-  font-size: 35px;
-
-  font-weight: 400;
-
-  margin-bottom: 5px;
+  margin-bottom:5px;
 }
 
+.modal-content p{
+  font-size:15px;
 
-.modal-content p {
+  font-weight:300;
 
-  font-size: 15px;
+  color:#756d63;
 
-  font-weight: 300;
-
-  color: #756d63;
-
-  margin-bottom: 23px;
-}
-
-
-.choice {
-
-  width: 100%;
-
-  padding: 14px;
-
-  margin: 6px 0;
-
-  border:
-    1px solid
-    rgba(142,124,94,.45);
-
-  border-radius: 9px;
-
-  background:
-    rgba(255,255,255,.48);
-
-  color: #413b34;
-
-  font-family:
-    "Heebo",
-    sans-serif;
-
-  font-size: 16px;
-
-  cursor: pointer;
-
-  transition: .2s;
-}
-
-
-.choice:hover {
-  background: #eee6d9;
+  margin-bottom:23px;
 }
 
 
 /* =====================================================
-   חלון BIT
+   בחירת יומן
 ===================================================== */
 
-.bit-modal {
+.calendar-modal-icon{
+  position:relative;
 
-  max-width: 405px;
+  width:45px;
+  height:45px;
 
-  padding: 34px 22px 26px;
+  margin:0 auto 12px;
+
+  border:
+    1.5px solid
+    var(--gold);
+
+  border-radius:7px;
+}
+
+.calendar-modal-icon::before{
+  content:"";
+
+  position:absolute;
+
+  top:10px;
+  left:7px;
+
+  width:29px;
+  height:27px;
+
+  border:
+    1.5px solid
+    var(--gold);
+
+  border-radius:4px;
+}
+
+.calendar-modal-icon::after{
+  content:"";
+
+  position:absolute;
+
+  top:18px;
+  left:10px;
+
+  width:23px;
+  height:1px;
+
+  background:var(--gold);
+
+  box-shadow:
+    0 7px 0 rgba(173,135,71,.45),
+    0 14px 0 rgba(173,135,71,.45);
+}
+
+.calendar-modal-title{
+  font:
+    400 31px
+    "Cormorant Garamond",
+    serif;
+
+  margin-bottom:5px;
+}
+
+.calendar-modal-subtitle{
+  color:#81786d;
+
+  font-size:14px;
+
+  margin-bottom:22px;
+}
+
+.calendar-choice{
+  width:100%;
+
+  min-height:62px;
+
+  display:flex;
+  align-items:center;
+
+  justify-content:flex-start;
+
+  gap:14px;
+
+  padding:10px 15px;
+
+  margin:8px 0;
+
+  border:
+    1px solid
+    rgba(142,124,94,.35);
+
+  border-radius:11px;
+
+  background:
+    rgba(255,255,255,.55);
+
+  color:#413b34;
+
+  cursor:pointer;
+
+  transition:.2s;
+
+  text-align:right;
+}
+
+.calendar-choice:hover{
+  background:#eee6d9;
+  transform:translateY(-1px);
+}
+
+.calendar-choice-icon{
+  width:40px;
+  height:40px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:9px;
+
+  font-size:20px;
+}
+
+.google-icon{
+  background:#f1f5ff;
+  color:#4285f4;
+}
+
+.apple-icon{
+  background:#f0efed;
+  color:#333;
+}
+
+.calendar-choice-text{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+}
+
+.calendar-choice-title{
+  font-size:16px;
+}
+
+.calendar-choice-description{
+  font-size:11px;
+
+  color:#988d80;
+
+  font-weight:300;
+}
+
+.calendar-cancel{
+  width:100%;
+
+  margin-top:8px;
+
+  padding:11px;
+
+  background:transparent;
+
+  color:#8b8175;
+
+  cursor:pointer;
+
+  font-size:13px;
 }
 
 
-.bit-modal-logo {
+/* =====================================================
+   RSVP
+===================================================== */
 
-  font-family:
-    Arial,
-    sans-serif;
+.form-row{
+  margin:10px 0;
 
-  font-size: 45px;
+  text-align:right;
+}
 
-  line-height: 1;
+.form-label{
+  display:block;
 
-  font-weight: 700;
+  font-size:13px;
 
-  letter-spacing: -4px;
+  color:#81786d;
 
-  color: #55a85f;
+  margin-bottom:5px;
+}
 
-  margin-bottom: 16px;
+.form-input,
+.guest-count{
+  width:100%;
+
+  padding:12px;
+
+  border:
+    1px solid
+    rgba(142,124,94,.4);
+
+  border-radius:9px;
+
+  background:#fffdf8;
+
+  color:#403a33;
+
+  outline:none;
+}
+
+.guest-picker{
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+}
+
+.guest-count{
+  text-align:center;
+
+  font-size:18px;
+}
+
+.counter-btn{
+  width:42px;
+  height:42px;
+
+  border-radius:9px;
+
+  background:#eee7dc;
+
+  color:#5b5248;
+
+  cursor:pointer;
+
+  font-size:20px;
+}
+
+.choice{
+  width:100%;
+
+  padding:14px;
+
+  margin:6px 0;
+
+  border:
+    1px solid
+    rgba(142,124,94,.5);
+
+  border-radius:9px;
+
+  background:
+    rgba(255,255,255,.45);
+
+  color:#413b34;
+
+  font-size:16px;
+
+  cursor:pointer;
+}
+
+.choice:hover{
+  background:#eee6d9;
+}
+
+.success{
+  display:none;
+
+  padding:15px;
+
+  border-radius:10px;
+
+  background:#eef4eb;
+
+  color:#31563a;
+
+  margin-top:12px;
 }
 
 
-.bit-title {
+/* =====================================================
+   BIT
+===================================================== */
 
-  font-family:
-    "Heebo",
-    sans-serif;
+.bit-modal-logo{
+  font:
+    700 45px
+    Arial;
 
-  font-size: 27px;
+  color:#55a85f;
 
-  font-weight: 400;
+  letter-spacing:-4px;
 
-  color: #23452c;
-
-  margin-bottom: 6px;
+  margin-bottom:16px;
 }
 
+.bit-title{
+  font-size:27px;
 
-.bit-thanks {
+  color:#23452c;
 
-  font-size: 15px;
-
-  color: #6e786b;
-
-  font-weight: 300;
-
-  margin-bottom: 22px;
+  margin-bottom:6px;
 }
 
+.bit-thanks{
+  font-size:15px;
 
-.bit-divider {
+  color:#6e786b;
 
-  display: flex;
-
-  align-items: center;
-
-  gap: 10px;
-
-  margin: 14px 0 18px;
+  margin-bottom:22px;
 }
 
+.bit-divider{
+  display:flex;
 
-.bit-divider span {
+  align-items:center;
 
-  flex: 1;
+  gap:10px;
 
-  height: 1px;
+  margin:14px 0 18px;
+}
+
+.bit-divider span{
+  flex:1;
+
+  height:1px;
 
   background:
     rgba(173,135,71,.35);
 }
 
+.bit-divider b{
+  color:var(--gold);
 
-.bit-divider b {
-
-  color: var(--gold);
-
-  font-size: 12px;
+  font-size:12px;
 }
 
+.bit-number-label{
+  font-size:13px;
 
-.bit-number-label {
+  color:#8b8175;
 
-  font-size: 13px;
-
-  color: #8b8175;
-
-  margin-bottom: 4px;
+  margin-bottom:4px;
 }
 
+.bit-number{
+  direction:ltr;
 
-.bit-number {
+  font-size:29px;
 
-  direction: ltr;
+  letter-spacing:1px;
 
-  font-size: 29px;
+  color:#23452c;
 
-  letter-spacing: 1px;
-
-  font-weight: 400;
-
-  color: #23452c;
-
-  margin-bottom: 13px;
+  margin-bottom:13px;
 }
 
+.copy-bit{
+  width:100%;
 
-.copy-bit {
-
-  width: 100%;
-
-  padding: 13px;
+  padding:13px;
 
   border:
     1px solid
     rgba(173,135,71,.65);
 
-  border-radius: 10px;
+  border-radius:10px;
 
-  background: #fffdf8;
+  background:#fffdf8;
 
-  color: #4f6548;
+  color:#4f6548;
 
-  font-family:
-    "Heebo",
-    sans-serif;
+  font-size:15px;
 
-  font-size: 15px;
-
-  cursor: pointer;
+  cursor:pointer;
 }
 
+.bit-gift{
+  margin:19px 0 11px;
 
-.copy-bit:hover {
-  background: #f3eee3;
+  font-size:15px;
+
+  color:#2d4631;
 }
 
+.bit-note{
+  font-size:13px;
 
-.bit-gift {
+  line-height:1.7;
 
-  margin: 19px 0 11px;
-
-  font-size: 15px;
-
-  color: #2d4631;
+  color:#7f776d;
 }
 
+.bit-note strong{
+  display:inline-block;
 
-.gift-icon {
+  margin-top:4px;
 
-  font-size: 26px;
+  padding:2px 8px;
 
-  color: var(--gold);
+  border-radius:5px;
 
-  margin: 5px 0 8px;
+  background:#f0efe7;
+
+  color:#38503b;
 }
 
+.open-bit{
+  width:100%;
 
-.bit-note {
+  margin-top:18px;
 
-  font-size: 13px;
+  padding:14px;
 
-  line-height: 1.7;
+  border-radius:10px;
 
-  color: #7f776d;
+  background:#244b2d;
+
+  color:white;
+
+  font-size:16px;
+
+  cursor:pointer;
 }
 
+.bit-small{
+  margin-top:12px;
 
-.bit-note strong {
+  font-size:11px;
 
-  display: inline-block;
-
-  margin-top: 4px;
-
-  padding: 2px 8px;
-
-  border-radius: 5px;
-
-  background: #f0efe7;
-
-  color: #38503b;
-
-  font-weight: 500;
-}
-
-
-.open-bit {
-
-  display: block;
-
-  width: 100%;
-
-  margin-top: 18px;
-
-  padding: 14px;
-
-  border: 0;
-
-  border-radius: 10px;
-
-  background: #244b2d;
-
-  color: white;
-
-  text-decoration: none;
-
-  font-size: 16px;
-
-  font-family:
-    "Heebo",
-    sans-serif;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 7px 18px
-    rgba(36,75,45,.18);
-}
-
-
-.open-bit:hover {
-  background: #1d3e25;
-}
-
-
-.bit-small {
-
-  margin-top: 12px;
-
-  font-size: 11px;
-
-  color: #9a9186;
+  color:#9a9186;
 }
 
 
@@ -1574,19 +1889,13 @@ body {
    אשראי
 ===================================================== */
 
-.credit-box {
-  padding-top: 6px;
-}
+.credit-big-icon{
+  width:58px;
+  height:39px;
 
+  margin:0 auto 14px;
 
-.credit-big-icon {
-
-  width: 58px;
-  height: 39px;
-
-  margin: 0 auto 14px;
-
-  border-radius: 7px;
+  border-radius:7px;
 
   background:
     linear-gradient(
@@ -1595,33 +1904,37 @@ body {
       #35312c
     );
 
-  position: relative;
+  position:relative;
 }
 
+.credit-big-icon::before{
+  content:"";
 
-.credit-big-icon:before {
+  position:absolute;
 
-  content: "";
+  left:0;
+  right:0;
+  top:9px;
 
-  position: absolute;
+  height:5px;
 
-  left: 0;
-  right: 0;
-  top: 9px;
-
-  height: 5px;
-
-  background: #c7aa75;
+  background:#c7aa75;
 }
 
+.credit-link{
+  display:block;
 
-.credit-box h2 {
-  margin-bottom: 8px;
-}
+  width:100%;
 
+  padding:14px;
 
-.credit-box p {
-  margin-bottom: 16px;
+  border-radius:10px;
+
+  background:#3d3833;
+
+  color:white;
+
+  text-decoration:none;
 }
 
 
@@ -1629,98 +1942,86 @@ body {
    מובייל
 ===================================================== */
 
-@media(max-width:450px) {
+@media(max-width:450px){
 
-  .opening-title {
-
-    font-size: 14px;
-
-    letter-spacing: 4px;
+  .opening-title{
+    font-size:14px;
+    letter-spacing:4px;
   }
 
-
-  .opening-names {
-    font-size: 44px;
+  .opening-names{
+    font-size:44px;
   }
 
-
-  .opening-names span {
-    font-size: 40px;
+  .opening-names span{
+    font-size:40px;
   }
 
-
-  .wax-seal {
-
-    width: 175px;
-
-    height: 175px;
+  .wax-seal{
+    width:175px;
+    height:175px;
   }
-
 
   .seal-save,
-  .seal-date {
-    font-size: 24px;
+  .seal-date{
+    font-size:24px;
   }
 
-
-  .opening-wedding {
-    font-size: 16px;
+  .opening-wedding{
+    font-size:16px;
   }
 
-
-  .content {
-
-    padding: 50px 17px 43px;
+  .content{
+    padding:
+      50px 17px 43px;
   }
 
-
-  .names {
-    font-size: 46px;
+  .names{
+    font-size:46px;
   }
 
-
-  .names .and {
-    font-size: 42px;
+  .names .and{
+    font-size:42px;
   }
 
-
-  .venue {
-    font-size: 55px;
+  .venue{
+    font-size:55px;
   }
 
-
-  .button {
-    min-height: 72px;
+  .event-date{
+    font-size:24px;
   }
 
-
-  .action-icon {
-
-    width: 43px;
-
-    height: 43px;
-
-    margin-left: 11px;
+  .time-number{
+    font-size:34px;
   }
 
-
-  .action-title {
-    font-size: 16px;
+  .time-label{
+    font-size:8px;
+    letter-spacing:1px;
   }
 
-
-  .action-subtitle {
-    font-size: 11px;
+  .button,
+  .calendar-main{
+    min-height:72px;
   }
 
+  .action-icon,
+  .calendar-icon{
+    width:43px;
+    height:43px;
 
-  .bit-title {
-    font-size: 24px;
+    margin-left:11px;
   }
 
+  .action-title,
+  .calendar-main-title{
+    font-size:16px;
+  }
 
-  .bit-number {
-    font-size: 26px;
+  .action-subtitle,
+  .calendar-main-subtitle{
+    font-size:11px;
   }
 
 }
@@ -1741,7 +2042,6 @@ body {
   <div class="opening-border"></div>
 
   <div class="opening-decoration top"></div>
-
   <div class="opening-decoration bottom"></div>
 
   <div class="leaf-decoration left">
@@ -1755,24 +2055,15 @@ body {
 
   <div class="opening-content">
 
-
     <div class="opening-title">
       THE WEDDING OF
     </div>
 
-
     <div class="opening-names">
-
       רועי
-
-      <span>
-        &amp;
-      </span>
-
+      <span>&amp;</span>
       שיראל
-
     </div>
-
 
     <div class="opening-subtitle">
       OUR SPECIAL DAY
@@ -1809,16 +2100,13 @@ body {
       the wedding
     </div>
 
-
     <div class="opening-hint">
       לחצו על החותמת לפתיחת ההזמנה
     </div>
 
-
   </div>
 
 </div>
-
 
 
 <!-- =====================================================
@@ -1837,15 +2125,11 @@ body {
 
       <div class="monogram">
 
-        <span>
-          R
-        </span>
+        <span>R</span>
 
         <div class="monogram-line"></div>
 
-        <span>
-          S
-        </span>
+        <span>S</span>
 
       </div>
 
@@ -1901,6 +2185,141 @@ body {
       </div>
 
 
+      <div class="event-date">
+        03.01.2027
+      </div>
+
+
+      <div class="event-time">
+        19:30 • קבלת פנים
+      </div>
+
+
+      <!-- =================================================
+           ספירה לאחור
+      ================================================= -->
+
+      <section
+        class="countdown"
+        id="countdownSection"
+      >
+
+        <div class="countdown-label">
+          WE ARE GETTING MARRIED
+        </div>
+
+        <div class="countdown-subtitle">
+          עד היום המיוחד שלנו
+        </div>
+
+
+        <div class="countdown-grid">
+
+
+          <div class="time-box">
+
+            <div
+              class="time-number"
+              id="days"
+            >
+              0
+            </div>
+
+            <div class="time-label">
+              DAYS
+            </div>
+
+          </div>
+
+
+          <div class="time-box">
+
+            <div
+              class="time-number"
+              id="hours"
+            >
+              0
+            </div>
+
+            <div class="time-label">
+              HOURS
+            </div>
+
+          </div>
+
+
+          <div class="time-box">
+
+            <div
+              class="time-number"
+              id="minutes"
+            >
+              0
+            </div>
+
+            <div class="time-label">
+              MINUTES
+            </div>
+
+          </div>
+
+
+          <div class="time-box seconds">
+
+            <div
+              class="time-number"
+              id="seconds"
+            >
+              0
+            </div>
+
+            <div class="time-label">
+              SECONDS
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           כפתור יומן
+      ================================================= -->
+
+      <button
+        class="calendar-main"
+        onclick="openCalendarChooser()"
+      >
+
+        <div class="calendar-icon">
+
+          <div class="calendar-dots"></div>
+
+        </div>
+
+
+        <div class="calendar-main-text">
+
+          <div class="calendar-main-title">
+            הוספה ליומן
+          </div>
+
+          <div class="calendar-main-subtitle">
+            שמרו את התאריך כדי לא לשכוח
+          </div>
+
+        </div>
+
+
+        <div class="calendar-arrow">
+          ‹
+        </div>
+
+      </button>
+
 
       <!-- =================================================
            כפתורים
@@ -1945,7 +2364,6 @@ body {
         </button>
 
 
-
         <!-- מיקום -->
 
         <a
@@ -1982,8 +2400,7 @@ body {
         </a>
 
 
-
-        <!-- BIT -->
+        <!-- Bit -->
 
         <a
           class="button bit-card"
@@ -2018,7 +2435,6 @@ body {
           </div>
 
         </a>
-
 
 
         <!-- אשראי -->
@@ -2059,7 +2475,6 @@ body {
       </div>
 
 
-
       <!-- Footer -->
 
       <div class="footer">
@@ -2083,7 +2498,7 @@ body {
 
 
         <div class="footer-names">
-          ROEI & SHIREL
+          ROEI &amp; SHIREL
         </div>
 
       </div>
@@ -2096,9 +2511,100 @@ body {
 </div>
 
 
+<!-- =====================================================
+     חלון בחירת יומן
+===================================================== -->
+
+<div
+  class="modal"
+  id="calendarModal"
+>
+
+  <div class="modal-content">
+
+    <span
+      class="close"
+      onclick="closeModal('calendarModal')"
+    >
+      ×
+    </span>
+
+
+    <div class="calendar-modal-icon"></div>
+
+
+    <div class="calendar-modal-title">
+      הוספה ליומן
+    </div>
+
+
+    <div class="calendar-modal-subtitle">
+      בחרו את היומן שבו תרצו לשמור את האירוע
+    </div>
+
+
+    <button
+      class="calendar-choice"
+      onclick="addToGoogleCalendar()"
+    >
+
+      <div class="calendar-choice-icon google-icon">
+        G
+      </div>
+
+      <div class="calendar-choice-text">
+
+        <div class="calendar-choice-title">
+          Google Calendar
+        </div>
+
+        <div class="calendar-choice-description">
+          פתיחה ביומן Google
+        </div>
+
+      </div>
+
+    </button>
+
+
+    <button
+      class="calendar-choice"
+      onclick="downloadICS()"
+    >
+
+      <div class="calendar-choice-icon apple-icon">
+        
+      </div>
+
+      <div class="calendar-choice-text">
+
+        <div class="calendar-choice-title">
+          Apple Calendar / iPhone
+        </div>
+
+        <div class="calendar-choice-description">
+          הוספת האירוע ליומן במכשיר
+        </div>
+
+      </div>
+
+    </button>
+
+
+    <button
+      class="calendar-cancel"
+      onclick="closeModal('calendarModal')"
+    >
+      ביטול
+    </button>
+
+  </div>
+
+</div>
+
 
 <!-- =====================================================
-     אישור הגעה
+     RSVP
 ===================================================== -->
 
 <div
@@ -2108,10 +2614,9 @@ body {
 
   <div class="modal-content">
 
-
     <span
       class="close"
-      onclick="closeRSVP()"
+      onclick="closeModal('rsvpModal')"
     >
       ×
     </span>
@@ -2121,32 +2626,84 @@ body {
       אישור הגעה
     </h2>
 
-
     <p>
       נשמח לדעת אם תוכלו לחגוג איתנו
     </p>
 
 
+    <div class="form-row">
+
+      <label class="form-label">
+        שם מלא
+      </label>
+
+      <input
+        class="form-input"
+        id="guestName"
+        placeholder="הקלידו שם מלא"
+      >
+
+    </div>
+
+
+    <div class="form-row">
+
+      <label class="form-label">
+        מספר מוזמנים
+      </label>
+
+      <div class="guest-picker">
+
+        <button
+          class="counter-btn"
+          onclick="changeGuests(1)"
+        >
+          +
+        </button>
+
+        <input
+          class="guest-count"
+          id="guestCount"
+          value="2"
+          readonly
+        >
+
+        <button
+          class="counter-btn"
+          onclick="changeGuests(-1)"
+        >
+          −
+        </button>
+
+      </div>
+
+    </div>
+
+
     <button
       class="choice"
-      onclick="rsvpYes()"
+      onclick="submitRSVP(true)"
     >
-      כן, אני מגיע/ה
+      מגיע/ה לחגוג איתכם
     </button>
 
 
     <button
       class="choice"
-      onclick="rsvpNo()"
+      onclick="submitRSVP(false)"
     >
       לצערי לא אוכל להגיע
     </button>
 
 
+    <div
+      class="success"
+      id="rsvpSuccess"
+    ></div>
+
   </div>
 
 </div>
-
 
 
 <!-- =====================================================
@@ -2158,12 +2715,11 @@ body {
   id="bitModal"
 >
 
-  <div class="modal-content bit-modal">
-
+  <div class="modal-content">
 
     <span
       class="close"
-      onclick="closeBit()"
+      onclick="closeModal('bitModal')"
     >
       ×
     </span>
@@ -2180,18 +2736,14 @@ body {
 
 
     <div class="bit-thanks">
-      תודה שאתם חלק מהיום המיוחד שלנו ♥
+      תודה שאתם חלק מהיום המיוחד שלנו
     </div>
 
 
     <div class="bit-divider">
-
       <span></span>
-
       <b>♥</b>
-
       <span></span>
-
     </div>
 
 
@@ -2215,23 +2767,14 @@ body {
 
 
     <div class="bit-divider">
-
       <span></span>
-
       <b>♥</b>
-
       <span></span>
-
     </div>
 
 
     <div class="bit-gift">
-      בחרו בעצמכם את הסכום שתרצו להעניק
-    </div>
-
-
-    <div class="gift-icon">
-      ♢
+      בחרו בעצמכם את סכום המתנה
     </div>
 
 
@@ -2257,14 +2800,12 @@ body {
 
 
     <div class="bit-small">
-      אם Bit לא נפתחת, המספר יישאר מוצג כדי שתוכלו להעתיק אותו.
+      אם Bit לא נפתחת, ניתן להעתיק את המספר ולהעביר דרך האפליקציה.
     </div>
-
 
   </div>
 
 </div>
-
 
 
 <!-- =====================================================
@@ -2276,12 +2817,11 @@ body {
   id="creditModal"
 >
 
-  <div class="modal-content credit-box">
-
+  <div class="modal-content">
 
     <span
       class="close"
-      onclick="closeCredit()"
+      onclick="closeModal('creditModal')"
     >
       ×
     </span>
@@ -2296,94 +2836,293 @@ body {
 
 
     <p>
-      עמוד התשלום באשראי יחובר כאן בהמשך.
+      כאן יחובר עמוד הסליקה.
+      האורח יוכל לבחור את סכום המתנה ולשלם בכרטיס.
     </p>
 
 
-    <button
-      class="choice"
-      onclick="closeCredit()"
+    <a
+      class="credit-link"
+      href="#"
+      onclick="openCreditLink(event)"
     >
-      חזרה להזמנה
-    </button>
-
+      המשך לתשלום מאובטח
+    </a>
 
   </div>
 
 </div>
 
 
-
 <script>
+
+/* =====================================================
+   הגדרות
+===================================================== */
+
+const WEDDING_DATE =
+  "2027-01-03T19:30:00+02:00";
+
+
+/*
+   כאשר יהיה לך קישור סליקה באשראי,
+   הדבק אותו כאן.
+*/
+
+const CREDIT_PAYMENT_URL =
+  "";
 
 
 /* =====================================================
    פתיחת ההזמנה
 ===================================================== */
 
-function openInvitation() {
+function openInvitation(){
 
   const opening =
     document.getElementById("opening");
 
-  const invitation =
-    document.getElementById("invitation");
-
-
   opening.classList.add("opened");
 
 
-  setTimeout(function() {
+  setTimeout(function(){
 
-    opening.style.display = "none";
+    opening.style.display =
+      "none";
 
-    invitation.style.display = "block";
+    document.getElementById(
+      "invitation"
+    ).style.display =
+      "block";
 
-    window.scrollTo(0, 0);
+    document.body.style.overflow =
+      "auto";
 
-    document.body.style.overflow = "auto";
+    window.scrollTo(0,0);
 
-  }, 1100);
+  },1000);
 
 }
 
 
 /* =====================================================
-   אישור הגעה
+   יומן
 ===================================================== */
 
-function openRSVP() {
+function openCalendarChooser(){
 
   document.getElementById(
-    "rsvpModal"
-  ).style.display = "flex";
+    "calendarModal"
+  ).style.display =
+    "flex";
 
 }
 
 
-function closeRSVP() {
+function addToGoogleCalendar(){
 
-  document.getElementById(
-    "rsvpModal"
-  ).style.display = "none";
+  const title =
+    "החתונה של רועי ושיראל";
 
-}
+  const start =
+    "20270103T193000";
+
+  const end =
+    "20270103T233000";
+
+  const location =
+    "מתחם האירועים ADIA";
 
 
-function rsvpYes() {
+  const url =
+    "https://calendar.google.com/calendar/render" +
 
-  alert(
-    "מעולה! נשמח לראות אתכם בחתונה ❤️"
+    "?action=TEMPLATE" +
+
+    "&text=" +
+    encodeURIComponent(title) +
+
+    "&dates=" +
+    start +
+    "/" +
+    end +
+
+    "&location=" +
+    encodeURIComponent(location) +
+
+    "&details=" +
+    encodeURIComponent(
+      "החתונה של רועי ושיראל"
+    );
+
+
+  window.open(
+    url,
+    "_blank"
   );
 
 }
 
 
-function rsvpNo() {
+function downloadICS(){
 
-  alert(
-    "תודה על העדכון ❤️"
-  );
+  const ics = [
+
+    "BEGIN:VCALENDAR",
+
+    "VERSION:2.0",
+
+    "PRODID:-//Roei and Shirel//Wedding//HE",
+
+    "CALSCALE:GREGORIAN",
+
+    "BEGIN:VEVENT",
+
+    "UID:roei-shirel-wedding-20270103@wedding",
+
+    "DTSTART;TZID=Asia/Jerusalem:20270103T193000",
+
+    "DTEND;TZID=Asia/Jerusalem:20270103T233000",
+
+    "SUMMARY:החתונה של רועי ושיראל",
+
+    "LOCATION:מתחם האירועים ADIA",
+
+    "DESCRIPTION:החתונה של רועי ושיראל",
+
+    "END:VEVENT",
+
+    "END:VCALENDAR"
+
+  ].join("\r\n");
+
+
+  const blob =
+    new Blob(
+      [ics],
+      {
+        type:
+          "text/calendar;charset=utf-8"
+      }
+    );
+
+
+  const url =
+    URL.createObjectURL(blob);
+
+
+  const link =
+    document.createElement("a");
+
+  link.href =
+    url;
+
+  link.download =
+    "roei-shirel-wedding.ics";
+
+
+  document.body.appendChild(link);
+
+  link.click();
+
+  link.remove();
+
+
+  setTimeout(function(){
+
+    URL.revokeObjectURL(url);
+
+  },1000);
+
+
+  closeModal("calendarModal");
+
+}
+
+
+/* =====================================================
+   RSVP
+===================================================== */
+
+function openRSVP(){
+
+  document.getElementById(
+    "rsvpModal"
+  ).style.display =
+    "flex";
+
+}
+
+
+function changeGuests(delta){
+
+  const input =
+    document.getElementById(
+      "guestCount"
+    );
+
+  input.value =
+    Math.max(
+      1,
+      Math.min(
+        12,
+        Number(input.value) + delta
+      )
+    );
+
+}
+
+
+function submitRSVP(coming){
+
+  const name =
+    document
+      .getElementById("guestName")
+      .value
+      .trim();
+
+  const count =
+    document.getElementById(
+      "guestCount"
+    ).value;
+
+  const success =
+    document.getElementById(
+      "rsvpSuccess"
+    );
+
+
+  if(!name){
+
+    alert("נא להזין שם מלא");
+
+    return;
+
+  }
+
+
+  success.style.display =
+    "block";
+
+
+  if(coming){
+
+    success.innerHTML =
+      "תודה " +
+      name +
+      " ♥<br>" +
+      "האישור התקבל עבור " +
+      count +
+      " מוזמנים.";
+
+  }else{
+
+    success.innerHTML =
+      "תודה " +
+      name +
+      " על העדכון ♥";
+
+  }
 
 }
 
@@ -2392,152 +3131,64 @@ function rsvpNo() {
    BIT
 ===================================================== */
 
-function openBit(event) {
+function openBit(event){
 
   event.preventDefault();
 
   document.getElementById(
     "bitModal"
-  ).style.display = "flex";
+  ).style.display =
+    "flex";
 
 }
 
 
-function closeBit() {
-
-  document.getElementById(
-    "bitModal"
-  ).style.display = "none";
-
-}
-
-
-/* =====================================================
-   העתקת מספר BIT
-===================================================== */
-
-function copyBitNumber() {
+function copyBitNumber(){
 
   const number =
     "0584000184";
 
+  navigator.clipboard
+    .writeText(number)
+    .then(function(){
 
-  if (
-    navigator.clipboard &&
-    window.isSecureContext
-  ) {
+      const button =
+        document.getElementById(
+          "copyBitButton"
+        );
 
-    navigator.clipboard
-      .writeText(number)
-      .then(function() {
+      button.textContent =
+        "✓ המספר הועתק";
 
-        const button =
-          document.getElementById(
-            "copyBitButton"
-          );
+      setTimeout(function(){
 
+        button.textContent =
+          "העתקת מספר";
 
-        button.innerText =
-          "✓ המספר הועתק";
+      },2000);
 
+    })
+    .catch(function(){
 
-        setTimeout(function() {
+      alert(
+        "המספר שלך הוא: 0584000184"
+      );
 
-          button.innerText =
-            "העתקת מספר";
-
-        }, 2000);
-
-      })
-      .catch(function() {
-
-        fallbackCopy(number);
-
-      });
-
-  } else {
-
-    fallbackCopy(number);
-
-  }
+    });
 
 }
 
 
-/* =====================================================
-   גיבוי להעתקה
-===================================================== */
+function tryOpenBit(){
 
-function fallbackCopy(text) {
-
-  const area =
-    document.createElement("textarea");
-
-
-  area.value = text;
-
-  area.style.position = "fixed";
-
-  area.style.opacity = "0";
-
-
-  document.body.appendChild(area);
-
-
-  area.focus();
-
-  area.select();
-
-
-  try {
-
-    document.execCommand("copy");
-
-
-    document.getElementById(
-      "copyBitButton"
-    ).innerText =
-      "✓ המספר הועתק";
-
-
-    setTimeout(function() {
-
-      document.getElementById(
-        "copyBitButton"
-      ).innerText =
-        "העתקת מספר";
-
-    }, 2000);
-
-  }
-
-
-  catch(e) {
-
-    alert(
-      "מספר ה-Bit: 058-400-0184"
-    );
-
-  }
-
-
-  document.body.removeChild(area);
-
-}
-
-
-/* =====================================================
-   פתיחת BIT
-===================================================== */
-
-function tryOpenBit() {
-
-  const isMobile =
+  const mobile =
     /Android|iPhone|iPad|iPod/i
-    .test(navigator.userAgent);
+      .test(
+        navigator.userAgent
+      );
 
 
-  if (!isMobile) {
+  if(!mobile){
 
     alert(
       "פתחו את Bit בטלפון והעבירו ל-058-400-0184"
@@ -2548,53 +3199,8 @@ function tryOpenBit() {
   }
 
 
-  let hidden = false;
-
-
-  const onVisibility =
-    function() {
-
-      if (document.hidden) {
-
-        hidden = true;
-
-        document.removeEventListener(
-          "visibilitychange",
-          onVisibility
-        );
-
-      }
-
-    };
-
-
-  document.addEventListener(
-    "visibilitychange",
-    onVisibility
-  );
-
-
   window.location.href =
     "bit://";
-
-
-  setTimeout(function() {
-
-    document.removeEventListener(
-      "visibilitychange",
-      onVisibility
-    );
-
-
-    if (!hidden) {
-
-      document.getElementById(
-        "bitModal"
-      ).style.display = "flex";
-
-    }
-
-  }, 1500);
 
 }
 
@@ -2603,75 +3209,143 @@ function tryOpenBit() {
    אשראי
 ===================================================== */
 
-function openCredit(event) {
+function openCredit(event){
 
   event.preventDefault();
 
-
   document.getElementById(
     "creditModal"
-  ).style.display = "flex";
+  ).style.display =
+    "flex";
 
 }
 
 
-function closeCredit() {
+function openCreditLink(event){
 
-  document.getElementById(
-    "creditModal"
-  ).style.display = "none";
+  if(!CREDIT_PAYMENT_URL){
+
+    event.preventDefault();
+
+    alert(
+      "עדיין לא הוגדר קישור סליקה."
+    );
+
+    return;
+
+  }
 
 }
 
 
 /* =====================================================
-   סגירת חלונות בלחיצה בחוץ
+   סגירת חלונות
 ===================================================== */
+
+function closeModal(id){
+
+  document.getElementById(
+    id
+  ).style.display =
+    "none";
+
+}
+
 
 window.addEventListener(
   "click",
-  function(event) {
+  function(event){
 
-    const rsvp =
-      document.getElementById(
-        "rsvpModal"
-      );
-
-
-    const bit =
-      document.getElementById(
-        "bitModal"
-      );
+    const modals = [
+      "calendarModal",
+      "rsvpModal",
+      "bitModal",
+      "creditModal"
+    ];
 
 
-    const credit =
-      document.getElementById(
-        "creditModal"
-      );
+    modals.forEach(function(id){
+
+      const modal =
+        document.getElementById(id);
 
 
-    if (event.target === rsvp) {
+      if(event.target === modal){
 
-      closeRSVP();
+        closeModal(id);
 
-    }
+      }
 
-
-    if (event.target === bit) {
-
-      closeBit();
-
-    }
-
-
-    if (event.target === credit) {
-
-      closeCredit();
-
-    }
+    });
 
   }
 );
+
+
+/* =====================================================
+   ספירה לאחור
+===================================================== */
+
+function updateCountdown(){
+
+  const difference =
+    new Date(WEDDING_DATE).getTime()
+    -
+    Date.now();
+
+
+  if(difference <= 0){
+
+    document.getElementById("days").textContent = "0";
+    document.getElementById("hours").textContent = "0";
+    document.getElementById("minutes").textContent = "0";
+    document.getElementById("seconds").textContent = "0";
+
+    return;
+
+  }
+
+
+  document.getElementById("days").textContent =
+    Math.floor(
+      difference / 86400000
+    );
+
+
+  document.getElementById("hours").textContent =
+    Math.floor(
+      (difference % 86400000) / 3600000
+    );
+
+
+  document.getElementById("minutes").textContent =
+    Math.floor(
+      (difference % 3600000) / 60000
+    );
+
+
+  document.getElementById("seconds").textContent =
+    Math.floor(
+      (difference % 60000) / 1000
+    );
+
+}
+
+
+updateCountdown();
+
+setInterval(
+  updateCountdown,
+  1000
+);
+
+
+/* =====================================================
+   התחלה
+===================================================== */
+
+document.body.style.overflow =
+  "hidden";
 
 </script>
 
